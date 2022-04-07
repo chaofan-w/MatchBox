@@ -1,0 +1,23 @@
+{
+  "name": "match_box_be",
+  "version": "1.0.0",
+  "description": "My bootcamp project - MatchBox - an emergency management application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev:backend": "nodemon server.js"
+  },
+  "repository": "https://github.com/chaofan-w/MatchBox.git",
+  "author": "Chaofan Wu <chaofan.w@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "moment": "^2.29.2",
+    "mongodb": "^4.5.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
+  }
+}
