@@ -3,6 +3,12 @@
 // import the needed node_modules.
 const express = require("express");
 const morgan = require("morgan");
+//--------------require endpoint methods--------------------------------
+const { addNewCamper } = require("./handleCampers/AddNewCamper");
+const { getCamper } = require("./handleCampers/GetCamper");
+const { updateCamperMsg } = require("./handleCampers/UpdateCamperMsg");
+const { getCamperMsgs } = require("./handleCampers/GetCamperMsgs");
+const { changeMsgRead } = require("./handleCampers/ChangeMsgRead");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -17,6 +23,11 @@ express()
 
   // Nothing to modify above this line
   // ---------------------------------
+  .post("/api/add-newcamper", addNewCamper) //sign up use
+  .get("/api/camper", getCamper) // for login individual page
+  .post("/api/camper/add-msg", updateCamperMsg)
+  .get("/api/camper/msg/:camperId", getCamperMsgs)
+  .post("/api/camper/msg/:camperId/:msgTime", changeMsgRead)
 
   // ---------------------------------
   // Nothing to modify below this line

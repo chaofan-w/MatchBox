@@ -10,8 +10,11 @@ const App = () => {
       {/* <Header /> */}
       <Main>
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/msg">
             <TestPage />
+          </Route>
+          <Route exact path="/">
+            This is the home page
           </Route>
           <Route path="">404: Oops!</Route>
         </Switch>
