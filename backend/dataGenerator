@@ -1,0 +1,272 @@
+const { MongoClient } = require("mongodb");
+require("dotenv").config();
+const { MONGO_URI } = process.env;
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
+const dbName = "MatchBox";
+const client = new MongoClient(MONGO_URI, options);
+const db = client.db(dbName);
+
+const dataGenerator = async () => {
+  await client.connect();
+  console.log(`${dbName} connected!`);
+
+  // const firstnamelist = [
+  //   "Barnaby",
+  //   "Charisse",
+  //   "Barbie",
+  //   "Glen",
+  //   "Finley",
+  //   "Mortimer",
+  //   "Royale",
+  //   "Githa",
+  //   "Corynn",
+  //   "Shari",
+  //   "Enola",
+  //   "Genevieve",
+  //   "Vonda",
+  //   "Gertrude",
+  //   "Jarrod",
+  //   "Xzavier",
+  //   "Gracelynn",
+  //   "Kester",
+  //   "Benton",
+  //   "Duke",
+  //   "Esmee",
+  //   "Faron",
+  //   "Ibbie",
+  //   "Cody",
+  //   "Katey",
+  //   "Zachary",
+  //   "Minty",
+  //   "Loretta",
+  //   "Venetia",
+  //   "Talon",
+  //   "Yasmin",
+  //   "Terell",
+  //   "Morgana",
+  //   "Clemence",
+  //   "Rena",
+  //   "Kenya",
+  //   "Harleigh",
+  //   "Lindsay",
+  //   "Kaety",
+  //   "Judie",
+  //   "Jacqui",
+  //   "Lynsay",
+  //   "Ettie",
+  //   "Izzy",
+  //   "Anne",
+  //   "Eleanora",
+  //   "Carleton",
+  //   "Dax",
+  //   "Viona",
+  //   "Freda",
+  //   "Hugh",
+  //   "Clinton",
+  //   "Hyram",
+  //   "London",
+  //   "Mercy",
+  //   "Regena",
+  //   "Devyn",
+  //   "Shanelle",
+  //   "Demetria",
+  //   "Alexander",
+  //   "Nikkole",
+  //   "Opal",
+  //   "Zayne",
+  //   "Leeann",
+  //   "Portia",
+  //   "Lenard",
+  //   "Isador",
+  //   "Essie",
+  //   "Carver",
+  //   "Cyrus",
+  //   "Osborne",
+  //   "Flanagan",
+  //   "Curran",
+  //   "Skyla",
+  //   "Adair",
+  //   "Luanne",
+  //   "Poppy",
+  //   "Jenifer",
+  //   "Elenora",
+  //   "Jaylah",
+  //   "Deon",
+  //   "Kortney",
+  //   "Angela",
+  //   "Albert",
+  //   "Caryl",
+  // ];
+
+  // const firstName = firstnamelist.filter(
+  //   (name) => firstnamelist.lastIndexOf(name) === firstnamelist.indexOf(name)
+  // );
+  // // console.log(firstName, firstName.length);
+
+  // const lastnamelist = [
+  //   "Morton",
+  //   "Estes",
+  //   "Leblanc",
+  //   "Alvarez",
+  //   "Kim",
+  //   "Moses",
+  //   "Mckenzie",
+  //   "Moore",
+  //   "Melton",
+  //   "Herring",
+  //   "Duffy",
+  //   "Jimenez",
+  //   "Walter",
+  //   "Douglas",
+  //   "Daugherty",
+  //   "Deleon",
+  //   "Humphrey",
+  //   "Cherry",
+  //   "Werner",
+  //   "Hatfield",
+  //   "Davis",
+  //   "Stuart",
+  //   "Hebert",
+  //   "Hancock",
+  //   "Osborne",
+  //   "Andersen",
+  //   "Middleton",
+  //   "Frey",
+  //   "Walsh",
+  //   "Gardner",
+  //   "Walsh",
+  //   "Curry",
+  //   "Romero",
+  //   "Combs",
+  //   "Wood",
+  //   "Dickerson",
+  //   "Campbell",
+  //   "Bass",
+  //   "Bridges",
+  //   "Ray",
+  //   "Horton",
+  //   "Preston",
+  //   "Knapp",
+  //   "Daugherty",
+  //   "Greer",
+  //   "Roach",
+  //   "Ball",
+  //   "Roy",
+  //   "Ford",
+  //   "Benton",
+  //   "Woodward",
+  //   "Butler",
+  //   "Roach",
+  //   "Kramer",
+  //   "Hudson",
+  //   "Sanford",
+  //   "Gardner",
+  //   "Singleton",
+  //   "Young",
+  //   "Martin",
+  //   "Mckay",
+  //   "Maddox",
+  //   "Terrell",
+  //   "Aguirre",
+  //   "Medina",
+  //   "Holder",
+  //   "Good",
+  //   "Faulkner",
+  //   "Vargas",
+  //   "Jenkins",
+  //   "Hill",
+  //   "Zuniga",
+  //   "Wilkinson",
+  //   "Flowers",
+  //   "Chavez",
+  //   "Ortiz",
+  //   "Li",
+  //   "Gomez",
+  //   "Macias",
+  //   "Crosby",
+  //   "Hernandez",
+  //   "Ritter",
+  //   "Terry",
+  //   "Webb",
+  //   "Hicks",
+  //   "Chen",
+  //   "Steele",
+  //   "Tanner",
+  //   "Brandt",
+  //   "Byrd",
+  //   "Rose",
+  //   "Warren",
+  //   "Bullock",
+  // ];
+
+  // const lastName = lastnamelist.filter(
+  //   (name) => lastnamelist.lastIndexOf(name) === lastnamelist.indexOf(name)
+  // );
+
+  // const skills = [
+  //   "IT support",
+  //   "first aid and treatment",
+  //   "search and rescue",
+  //   "supply logistics",
+  //   "senior care",
+  //   "child care",
+  //   "shelter building",
+  //   "electrial technique",
+  //   "food preparation",
+  //   "shelter hygiene",
+  //   "plumbing and repair",
+  //   "laundry",
+  // ];
+
+  // const campNum = [];
+  // for (let i = 1; i <= 12; i++) {
+  //   if (i.toString().length === 1) {
+  //     campNum.push(`MTL-CAMP-0${i}`);
+  //   } else {
+  //     campNum.push(`MTL-CAMP-${i}`);
+  //   }
+  // }
+  // // console.log(campNum);
+
+  // let importValues = [];
+  // // let randomIndex = Math.floor(Math.random()*12);
+  // for (let i = 0; i < 85; i++) {
+  //   let member = {
+  //     firstName: firstName[i],
+  //     lastName: lastName[i],
+  //     skills: skills[Math.floor(Math.random() * 12)],
+  //     campNum: campNum[Math.floor(Math.random() * 12)],
+  //     shelterNum:
+  //       importValues.length + 1 > 9
+  //         ? (importValues.length + 1).toString()
+  //         : "0" + (importValues.length + 1),
+  //   };
+  //   importValues.push(member);
+  // }
+  // console.log(importValues);
+
+  //   try {
+  //     await db.collection("campers").insertMany(importValues);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  //   client.close();
+  //   console.log(`${dbName} disconnected!`);
+  // };
+  try {
+    await db.collection("campers").updateMany({}, { $set: { msg: [] } });
+    //unset fields
+    // await db.collection("campers").updateMany({}, { $unset: { msg: [] } });
+  } catch (error) {
+    console.log(error.message);
+  }
+  client.close();
+  console.log(`${dbName} disconnected!`);
+};
+
+// dataGenerator();
+
+module.exports = { dataGenerator };
