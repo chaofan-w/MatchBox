@@ -1,29 +1,44 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const TestPage = () => {
-  // const [msg,setMsg]=useState({});
+  const [userInfo, setUserInfo] = useState(null);
+  const lastName = "Morton";
+  const campNum = "MTL-CAMP-05";
+  const shelterNum = "01";
 
   useEffect(() => {
-    const msg = {
-      camperId: "624ff8814a0467cbea0694f0",
-      msgContent: "#5 we found new task for you",
-      msgRead: false,
-    };
-    fetch("/api/camper/msg", {
-      method: "POST",
-      headers: {
-        ContentType: "application/json",
-      },
-      body: JSON.stringify(msg),
-    })
+    fetch(
+      `/api/camper?lastname=${lastName}&campnum=${campNum}&shelternum=${shelterNum}`
+    )
       .then((res) => res.json())
       .then((json) => {
         console.log(json.data);
+        setUserInfo(json.data[0]);
       });
   }, []);
 
-  return <h1>TestPage</h1>;
+  return (
+    <>
+      <h1>ProfilePage</h1>
+      {userInfo && (
+        <>
+          <h3>first name: {userInfo.firstName}</h3>
+          <h3>last name: {userInfo.lastName}</h3>
+          <h3>camp No.: {userInfo.campNum}</h3>
+          <h3>shelter No.: {userInfo.shelterNum}</h3>
+          <h3>skills : {userInfo.skills}</h3>
+          {userInfo.msg.map((msg) => (
+            <>
+              <p>{Date(msg.msgTime)}:</p>
+              <p>{msg.msgContent}</p>
+              <p>{msg.msgRead}</p>
+            </>
+          ))}
+        </>
+      )}
+    </>
+  );
 };
 
 export default TestPage;

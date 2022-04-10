@@ -32,7 +32,16 @@ const addNewCamper = async (req, res) => {
     const checkUserName = await db
       .collection("campers")
       .find({
-        $and: [{ firstName: firstName }, { lastName: lastName }],
+        $and: [
+          {
+            firstName:
+              firstName[0].toUpperCase() + firstName.substring(1).toLowerCase(),
+          },
+          {
+            lastName:
+              lastName[0].toUpperCase() + lastName.substring(1).toLowerCase(),
+          },
+        ],
       })
       .toArray();
 
@@ -44,6 +53,17 @@ const addNewCamper = async (req, res) => {
         400,
         null,
         `the user name <${firstName} ${lastName}> is registered already, only one registration for each user name`
+      );
+    }
+
+    if (!/^[0-9]{2}$/i.test(shelterNum.trim())) {
+      client.close();
+      console.log(`${dbName} disconnected!`);
+      return sendResponse(
+        res,
+        400,
+        null,
+        "please insert corret shelterNum format, e.g.,03, 10."
       );
     }
 
