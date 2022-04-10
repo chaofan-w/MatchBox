@@ -4,12 +4,19 @@
 const express = require("express");
 const morgan = require("morgan");
 //--------------require endpoint methods--------------------------------
+
+//---handle camper signin signup-------------------------------
 const { addNewCamper } = require("./handleCampers/AddNewCamper");
 const { getCamper } = require("./handleCampers/GetCamper");
-const { updateCamperMsg } = require("./handleCampers/UpdateCamperMsg");
+
+//---handle messages--------------------------------------------
 const { getCamperMsgs } = require("./handleCampers/GetCamperMsgs");
 const { changeMsgRead } = require("./handleCampers/ChangeMsgRead");
+const { updateCamperMsg } = require("./handleCampers/UpdateCamperMsg");
 const { msgToSkillGroup } = require("./handleCampers/MsgToSkillGroup");
+const { pushMsgToHelpers } = require("./handleCampers/PushMsgToHelpers");
+
+//---handle helpTaks--------------------------------------------
 const { addNewHelpTask } = require("./handleTasks/AddNewHelpTask");
 const { addHelperToTask } = require("./handleTasks/AddHelperToTask");
 const { deleteHelperFromTask } = require("./handleTasks/DeleteHelperFromTask");
@@ -41,6 +48,7 @@ express()
   .get("/api/camper/msg/:camperId", getCamperMsgs)
   .post("/api/camper/msg/:camperId/:msgTime", changeMsgRead)
   .post("/api/camper/groupmsgs/:skills", msgToSkillGroup)
+  .post("/api/camper/helpermsgs", pushMsgToHelpers)
 
   // ---------------------------------
   // Nothing to modify below this line
