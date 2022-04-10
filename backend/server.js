@@ -9,6 +9,12 @@ const { getCamper } = require("./handleCampers/GetCamper");
 const { updateCamperMsg } = require("./handleCampers/UpdateCamperMsg");
 const { getCamperMsgs } = require("./handleCampers/GetCamperMsgs");
 const { changeMsgRead } = require("./handleCampers/ChangeMsgRead");
+const { msgToSkillGroup } = require("./handleCampers/MsgToSkillGroup");
+const { addNewHelpTask } = require("./handleTasks/AddNewHelpTask");
+const { addHelperToTask } = require("./handleTasks/AddHelperToTask");
+const { deleteHelperFromTask } = require("./handleTasks/DeleteHelperFromTask");
+const { changeTaskDone } = require("./handleTasks/ChangeTaskDone");
+const { deleteHelpTask } = require("./handleTasks/DeleteHelpTask");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -23,11 +29,18 @@ express()
 
   // Nothing to modify above this line
   // ---------------------------------
+  .post("/api/add-newhelptask", addNewHelpTask) //post new help tasks to recruit people
+  .delete("/api/delete-helptask", deleteHelpTask) //post new help tasks to recruit people
+  .post("/api/helptasks/add-helper", addHelperToTask)
+  .post("/api/helptasks/delete-helper", deleteHelperFromTask)
+  .post("/api/helptasks/taskdone", changeTaskDone)
+
   .post("/api/add-newcamper", addNewCamper) //sign up use
   .get("/api/camper", getCamper) // for login individual page
   .post("/api/camper/add-msg", updateCamperMsg)
   .get("/api/camper/msg/:camperId", getCamperMsgs)
   .post("/api/camper/msg/:camperId/:msgTime", changeMsgRead)
+  .post("/api/camper/groupmsgs/:skills", msgToSkillGroup)
 
   // ---------------------------------
   // Nothing to modify below this line

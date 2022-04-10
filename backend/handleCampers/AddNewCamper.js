@@ -68,7 +68,7 @@ const addNewCamper = async (req, res) => {
     newValue = { ...newValue, msg: [] };
 
     const newCamper = await db.collection("campers").insertOne(newValue);
-    sendResponse(res, 200, newCamper, "a neww camper is successfully added.");
+    sendResponse(res, 200, newCamper, "a new camper is successfully added.");
   } catch (error) {
     console.log(error.message);
   }
