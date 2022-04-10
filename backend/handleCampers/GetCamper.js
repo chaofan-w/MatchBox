@@ -60,15 +60,16 @@ const getCamper = async (req, res) => {
         ],
       })
       .toArray();
+    console.log(camper);
 
-    if (camper) {
+    if (camper.length > 0) {
       sendResponse(res, 200, camper, "camper info found");
     } else {
       sendResponse(
         res,
         400,
         null,
-        `the camper login info: ${lastname}, ${campnum}, ${shelternum} not found`
+        `the camper login info: ${lastname}, ${campnum}-${shelternum} not found`
       );
     }
   } catch (error) {
