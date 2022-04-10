@@ -2,18 +2,41 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    --color-cadmium-red: #D80026;
+    /* --color-cadmium-red: #D80026;
     --color-alabama-crimson: #AA001E;
-    --color-orange: #F79D00;
+    --color-primary: #F79D00;
     --color-selective-yellow: #FDBB01;
     --color-desert-sand: #E3C4A6;
     --font-heading: "Segoe UI", sans-serif;
     --font-body: 'Poppins', Arial, Helvetica, sans-serif;
-    --padding-page: 24px;
+    --padding-page: 24px; */
     /* --firsth-font-family: 'Poppins', sans-serif;
     --heading-font-family: 'Roboto', sans-serif;
     --heading-font-family: Helvetica, sans-serif;
     --heading-font-family: "Segoe UI", sans-serif; */
+    --c-navy: #0426a0;
+    --c-navy-rgb: 4,38,160;
+    --c-light-blue: #3004A0;
+    --c-light-blue-rgb: 4,46,230;
+    --c-grey-blue:#50609a;
+    --c-grey-blue-rgb:80,96,154;
+    --c-white: #fff;
+    --c-white-rgb: 255,255,255;
+    --c-dark-gold:#A07E04;
+    --c-dark-gold-rgb:160,126,4;
+    --c-black: #171618;
+    --c-black-rgb: 23,22,24;
+    --c-greytext: #707070;
+    --c-greytext-rgb: 112,112,112;
+    --c-tint-blue: #c0c9e7;
+    --c-tint-blue-rgb: 192,201,231;
+    --c-superlight: #e8e8e8;
+    --c-superlight-rgb: 232,232,232;
+    --c-print: #000;
+    --c-print-rgb: 0,0,0;
+    --c-error: #f94038;
+    --c-error-rgb: 249,64,56;
+    
 
 
   }

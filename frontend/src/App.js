@@ -2,6 +2,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import TestPage from "./components/TestPage";
 import GlobalStyles from "./GlobalStyles";
+import SignIn from "./components/SigninPage";
+import SignUp from "./components/SignUpPage";
 
 const App = () => {
   return (
@@ -12,6 +14,20 @@ const App = () => {
         <Switch>
           <Route exact path="/msg">
             <TestPage />
+          </Route>
+          <Route exact path="/signin">
+            <h1>Sign In</h1>
+            <SignIn />
+          </Route>
+          <Route exact path="/signup">
+            <h1>Sign Up</h1>
+            <SignUp />
+          </Route>
+          <Route exact path="/profile">
+            This is the camper profile page
+          </Route>
+          <Route exact path="/helpcenter">
+            This is the helpcenter page
           </Route>
           <Route exact path="/">
             This is the home page
@@ -25,10 +41,10 @@ const App = () => {
 };
 
 const Main = styled.div`
-  background: var(--color-orange);
+  background: var(--c-navy);
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 150px);
+  height: calc(100vh);
 `;
 
 export default App;
