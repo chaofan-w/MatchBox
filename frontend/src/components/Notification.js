@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import LoginContext from "../LoginContext";
 
-const Notification = ({ setShowNotification, setDisabledInput, message }) => {
+const Notification = ({ setDisabledInput, message, setShowNotification }) => {
   return (
     <StyledNotification>
       <div>{message}</div>

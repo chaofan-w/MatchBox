@@ -35,7 +35,8 @@ const SignIn = () => {
       .then((json) => {
         if (json.status === 200) {
           console.log(json.message);
-          setLoginState(true);
+          setLoginState(json.data[0]);
+          history.push("/helpcenter");
         } else {
           setShowNotification(true);
           setDisabledInput(true);

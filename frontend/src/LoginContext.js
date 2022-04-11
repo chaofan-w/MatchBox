@@ -3,8 +3,9 @@ import React, { createContext, useState, useEffect } from "react";
 export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
-  const [loginState, setLoginState] = useState(false);
+  const [loginState, setLoginState] = useState(null);
   const [helpTasks, setHelpTasks] = useState(null);
+  // const [showNotification, setShowNotification] = useState(false);
 
   return (
     <LoginContext.Provider
@@ -13,6 +14,8 @@ export const LoginProvider = ({ children }) => {
         setHelpTasks,
         loginState,
         setLoginState,
+        // showNotification,
+        // setShowNotification,
       }}
     >
       {children}
