@@ -4,6 +4,7 @@ import TestPage from "./components/TestPage";
 import GlobalStyles from "./GlobalStyles";
 import SignIn from "./components/SigninPage";
 import SignUp from "./components/SignUpPage";
+import HelpTaskListing from "./components/HelpTaskListing";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           </Route>
           <Route exact path="/helpcenter">
             This is the helpcenter page
+            <HelpTaskListing />
           </Route>
           <Route exact path="/">
             This is the home page
