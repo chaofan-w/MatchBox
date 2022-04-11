@@ -3,6 +3,7 @@ import LoginContext from "../LoginContext";
 import HelpTaskCard from "./HelpTaskCard";
 import styled from "styled-components";
 import HelpTaskOfCamperCard from "./HelpTaskOfCamperCard";
+import CreateNewTask from "./CreateNewTask";
 
 const CamperPrivatePage = () => {
   const { helpTasks, loginState } = useContext(LoginContext);
@@ -48,6 +49,7 @@ const CamperPrivatePage = () => {
               setTasksOfCamper={setTasksOfCamper}
             />
           ))}
+        <CreateNewTask setTasksOfCamper={setTasksOfCamper} />
       </TaskListingWrapper>
     </>
   );
