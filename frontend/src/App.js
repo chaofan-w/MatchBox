@@ -5,12 +5,14 @@ import GlobalStyles from "./GlobalStyles";
 import SignIn from "./components/SigninPage";
 import SignUp from "./components/SignUpPage";
 import HelpTaskListing from "./components/HelpTaskListing";
+import Header from "./components/Header";
+import CamperPrivatePage from "./components/CamperPrivatePage";
 
 const App = () => {
   return (
     <BrowserRouter>
       <GlobalStyles />
-      {/* <Header /> */}
+      <Header />
       <Main>
         <Switch>
           <Route exact path="/msg">
@@ -24,12 +26,12 @@ const App = () => {
             <h1>Sign Up</h1>
             <SignUp />
           </Route>
-          <Route exact path="/profile">
-            This is the camper profile page
-          </Route>
           <Route exact path="/helpcenter">
             This is the helpcenter page
             <HelpTaskListing />
+          </Route>
+          <Route exact path="/camper/:camperId">
+            <CamperPrivatePage />
           </Route>
           <Route exact path="/">
             This is the home page
@@ -46,7 +48,8 @@ const Main = styled.div`
   background: var(--c-navy);
   display: flex;
   flex-direction: column;
-  height: calc(100vh);
+  height: auto;
+  min-height: 90vh;
 `;
 
 export default App;
