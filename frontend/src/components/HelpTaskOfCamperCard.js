@@ -4,11 +4,12 @@ import LoginContext from "../LoginContext";
 import { useHistory } from "react-router-dom";
 import Notification from "./Notification";
 
-const HelpTaskCard = ({ task }) => {
+const HelpTaskOfCamperCard = ({ task, setTasksOfCamper }) => {
   const history = useHistory();
   const [message, setMessage] = useState("");
   const [showNotification, setShowNotification] = useState(false);
   const { loginState, setHelpTasks } = useContext(LoginContext);
+  const camperId = loginState._id;
 
   const handleBecomeHelper = async (ev) => {
     const taskId = ev.target.id;
@@ -27,10 +28,10 @@ const HelpTaskCard = ({ task }) => {
         .then((res) => res.json())
         .then((json) => {
           if (json.status === 200) {
-            fetch("/api/helptasks")
+            fetch(`/api/helptasks/${camperId}`)
               .then((res) => res.json())
               .then((json) => {
-                setHelpTasks(json.data);
+                setTasksOfCamper(json.data);
               });
           } else {
             setMessage(json.message);
@@ -59,10 +60,10 @@ const HelpTaskCard = ({ task }) => {
         .then((res) => res.json())
         .then((json) => {
           if (json.status === 200) {
-            fetch("/api/helptasks")
+            fetch(`/api/helptasks/${camperId}`)
               .then((res) => res.json())
               .then((json) => {
-                setHelpTasks(json.data);
+                setTasksOfCamper(json.data);
               });
           } else {
             setMessage(json.message);
@@ -87,10 +88,10 @@ const HelpTaskCard = ({ task }) => {
         .then((res) => res.json())
         .then((json) => {
           if (json.status === 200) {
-            fetch("/api/helptasks")
+            fetch(`/api/helptasks/${camperId}`)
               .then((res) => res.json())
               .then((json) => {
-                setHelpTasks(json.data);
+                setTasksOfCamper(json.data);
               });
           } else {
             setMessage(json.message);
@@ -114,10 +115,10 @@ const HelpTaskCard = ({ task }) => {
         .then((res) => res.json())
         .then((json) => {
           if (json.status === 200) {
-            fetch("/api/helptasks")
+            fetch(`/api/helptasks/${camperId}`)
               .then((res) => res.json())
               .then((json) => {
-                setHelpTasks(json.data);
+                setTasksOfCamper(json.data);
               });
           } else {
             setMessage(json.message);
@@ -224,4 +225,4 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-export default HelpTaskCard;
+export default HelpTaskOfCamperCard;

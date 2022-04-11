@@ -36,7 +36,8 @@ const SignIn = () => {
         if (json.status === 200) {
           console.log(json.message);
           setLoginState(json.data[0]);
-          history.push("/helpcenter");
+          sessionStorage.setItem("camperId", json.data[0]._id);
+          history.push(`/camper/${json.data[0]._id}`);
         } else {
           setShowNotification(true);
           setDisabledInput(true);

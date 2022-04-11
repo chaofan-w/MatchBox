@@ -24,6 +24,9 @@ const { deleteHelperFromTask } = require("./handleTasks/DeleteHelperFromTask");
 const { changeTaskDone } = require("./handleTasks/ChangeTaskDone");
 const { deleteHelpTask } = require("./handleTasks/DeleteHelpTask");
 const { getHelpTasks } = require("./handleTasks/GetHelpTasks");
+const {
+  getHelpTasksByCamperId,
+} = require("./handleTasks/GetHelpTasksByCamperId");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -44,6 +47,7 @@ express()
   .post("/api/helptasks/delete-helper", deleteHelperFromTask)
   .post("/api/helptasks/taskdone", changeTaskDone)
   .get("/api/helptasks", getHelpTasks)
+  .get("/api/helptasks/:camperId", getHelpTasksByCamperId)
 
   .post("/api/add-newcamper", addNewCamper) //sign up use
   .get("/api/camper", getCamper) // for login individual page
