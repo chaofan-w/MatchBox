@@ -33,6 +33,30 @@ const deleteHelpTask = async (req, res) => {
       return sendResponse(res, 400, null, `${taskId} is completed and closed.`);
     }
 
+    //-----------when a task has recruited some helpers or all helpers, at this moment if the owner cancelled the task, The server will push message to all registered helpers to let them know the task is cancelled.--------------------------------------------------------------
+    const taskDB = await db
+      .collection("helpTasks")
+      .find({ _id: ObjectId(taskId) })
+      .toArray();
+    if (taskDB[0].taskHelpers.length > 0) {
+      const pushIds = [];
+      pushIds.push(taskDB[0].taskOwner);
+      taskDB[0].taskHelpers.forEach((helper) => {
+        pushIds.push(helper);
+      });
+      const helpIds = pushIds.map((id) => ObjectId(id));
+      const updateMsg = {
+        msgTime: new Date(),
+        msgContent: `The task Id ${taskId} has been canceled by the owner!`,
+        msgRead: false,
+      };
+      const pushMsg = await db.collection("campers").updateMany(
+        { _id: { $in: helpIds } },
+        {
+          $push: { msg: updateMsg },
+        }
+      );
+    }
     const taskUpdate = await db
       .collection("helpTasks")
       .deleteOne({ _id: ObjectId(taskId) });

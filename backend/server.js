@@ -8,6 +8,7 @@ const morgan = require("morgan");
 //---handle camper signin signup-------------------------------
 const { addNewCamper } = require("./handleCampers/AddNewCamper");
 const { getCamper } = require("./handleCampers/GetCamper");
+const { getCamperById } = require("./handleCampers/GetCamperById");
 const { getCampKeys } = require("./handleCampers/getCampKeys");
 
 //---handle messages--------------------------------------------
@@ -51,6 +52,7 @@ express()
 
   .post("/api/add-newcamper", addNewCamper) //sign up use
   .get("/api/camper", getCamper) // for login individual page
+  .get("/api/camper/:camperId", getCamperById) // for login individual page
   .get("/api/camper/campkeys/:keys", getCampKeys)
   .post("/api/camper/add-msg", updateCamperMsg)
   .get("/api/camper/msg/:camperId", getCamperMsgs)

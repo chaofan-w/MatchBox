@@ -32,7 +32,20 @@ const TaskListingWrapper = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
+  margin: 30px;
+  gap: 30px;
+  .recruit {
+    background: var(--c-primary-purple);
+    color: var(--fontcolor-white);
+  }
+  .in-progress {
+    background: var(--c-primary-green);
+    color: var(--fontcolor-white);
+  }
+  .Completed {
+    background: var(--c-primary-grey);
+    color: var(--c-black);
+  }
 `;
 
 export default HelpTaskListing;

@@ -1,5 +1,4 @@
 "use strict";
-const { response } = require("express");
 //-----------------connection string setup MongoDB-------------------------
 const { MongoClient, ObjectId } = require("mongodb");
 require("dotenv").config();
@@ -16,28 +15,22 @@ const sendResponse = (res, status, data, message = "no message included.") => {
   return res.status(status).json({ status, data, message });
 };
 
-const addNewHelpTask = async (req, res) => {
+const getCamperById = async (req, res) => {
   await client.connect();
   console.log(`${dbName} connected!`);
   try {
-    const { ownerId, skillNeed, helperNum } = req.body;
-    const ownerInfo = await db
+    const camperId = req.params["camperId"];
+
+    const camperInfo = await db
       .collection("campers")
-      .find({ _id: ObjectId(ownerId) })
+      .find({ _id: ObjectId(camperId) })
       .toArray();
-    console.log(ownerInfo);
 
-    let newValue = {
-      taskOwner: ownerId,
-      taskSkill: skillNeed,
-      location: `${ownerInfo[0].campNum}-${ownerInfo[0].shelterNum}`,
-      helperNum: parseInt(helperNum),
-      taskHelpers: [],
-      status: "recruit",
-    };
-
-    const newTask = await db.collection("helpTasks").insertOne(newValue);
-    sendResponse(res, 200, newValue, "a new help task is successfully added.");
+    if (camperInfo.length > 0) {
+      sendResponse(res, 200, camperInfo, `we found camper Id ${camperId} info`);
+    } else {
+      sendResponse(res, 400, null, `no camper found`);
+    }
   } catch (error) {
     console.log(error.message);
   }
@@ -45,4 +38,4 @@ const addNewHelpTask = async (req, res) => {
   console.log(`${dbName} disconnected!`);
 };
 
-module.exports = { addNewHelpTask };
+module.exports = { getCamperById };

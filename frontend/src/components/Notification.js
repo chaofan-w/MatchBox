@@ -31,6 +31,8 @@ const Notification = ({ setDisabledInput, message, setShowNotification }) => {
 
 const StyledNotification = styled.div`
   display: flex;
+  width: 500px;
+  height: 50px;
   flex-direction: row;
   align-items: center;
   gap: 5px;

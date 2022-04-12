@@ -45,7 +45,7 @@ const App = () => {
 };
 
 const Main = styled.div`
-  background: var(--c-navy);
+  background: var(--c-light-background);
   display: flex;
   flex-direction: column;
   height: auto;

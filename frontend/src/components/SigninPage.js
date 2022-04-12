@@ -93,10 +93,10 @@ const SignIn = () => {
   );
 };
 
-const SignInContainer = styled.div`
+export const SignInContainer = styled.div`
   width: 100%;
   height: 100%;
-  border: 2px solid darkgreen;
+  /* border: 2px solid darkgreen; */
 
   position: relative;
   display: flex;
@@ -105,7 +105,7 @@ const SignInContainer = styled.div`
   position: relative;
 `;
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -116,31 +116,31 @@ const StyledForm = styled.form`
   width: 50vw;
   min-width: 400px;
   height: fit-content;
-  background: var(--c-grey-blue);
+  background: var(--c-primary-blue);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10.2px);
   -webkit-backdrop-filter: blur(10.2px);
-  border: 1px solid var(--c-superlight);
+  border: 1px solid var(--c-primary-grey);
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   font-size: 2rem;
   width: 40vw;
   max-width: 400px;
   margin: 1vw auto 20px;
   border-radius: 2px;
   padding: 1rem 1rem;
-  background: rgba(var(--c-black), 0.5);
+  background: rgba(var(--c-light-background-rgb), 0.5);
   outline: none;
-  border: 3px solid var(--c-white);
+  border: 3px solid var(--fontcolor-white);
   border-radius: 10px;
-  color: var(--c-superlight);
+  color: var(--fontcolor-white);
   &::-webkit-input-placeholder {
-    color: var(--c-superlight);
+    color: var(--fontcolor-primary);
   }
   &:focus {
-    background: rgba(var(--c-tint-blue-rgb), 0.9);
+    background: rgba(var(--c-secondary-green-rgb), 0.9);
     color: var(--c-black);
     &::-webkit-input-placeholder {
       opacity: 0.2;
@@ -148,23 +148,23 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledSelect = styled.select`
+export const StyledSelect = styled.select`
   font-size: 1.2rem;
   width: 40vw;
   max-width: 400px;
   margin: 1vw auto 20px;
   border-radius: 2px;
   padding: 1rem 1rem;
-  background: rgba(var(--c-black), 0.5);
+  background: rgba(var(--c-light-background-rgb), 0.5);
   outline: none;
-  border: 3px solid var(--c-white);
+  border: 3px solid var(--fontcolor-white);
   border-radius: 10px;
-  color: var(--c-superlight);
+  color: var(--fontcolor-white);
   &::-webkit-input-placeholder {
-    color: var(--c-grey-text);
+    color: var(--fontcolor-primary);
   }
   &:focus {
-    background: rgba(var(--c-tint-blue-rgb), 0.9);
+    background: rgba(var(--c-secondary-green-rgb), 0.9);
     color: var(--c-black);
     &::-webkit-input-placeholder {
       opacity: 0.2;
@@ -172,23 +172,23 @@ const StyledSelect = styled.select`
   }
 `;
 
-const StyledBtn = styled.button`
+export const StyledBtn = styled.button`
   width: 25vw;
   max-width: 250px;
   margin: 0 auto;
   border-radius: 2px;
   padding: 1rem 1rem;
-  background: var(--c-dark-gold);
+  background: var(--c-primary-yellow);
   outline: none;
   border: none;
   margin-bottom: 10px;
   border-radius: 10px;
-  color: var(--c-white);
-  font-size: 1.5rem;
+  color: var(--c-primary-blue);
+  font-size: 1.8rem;
+  font-weight: 700;
   cursor: pointer;
   &:hover {
-    background: var(--c-tint-blue);
-    color: var(--c-black);
+    background: var(--c-secondary-yellow);
   }
 `;
 
