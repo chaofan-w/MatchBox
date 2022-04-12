@@ -3,6 +3,13 @@ import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import LoginContext from "../LoginContext";
 import Notification from "./Notification";
+import {
+  StyledBtn,
+  StyledSelect,
+  StyledInput,
+  StyledForm,
+  SignInContainer,
+} from "./SigninPage";
 
 const AddHelpTaskForm = ({ setShowForm, setTasksOfCamper }) => {
   const { loginState, setLoginState } = useContext(LoginContext);
@@ -87,123 +94,28 @@ const AddHelpTaskForm = ({ setShowForm, setTasksOfCamper }) => {
               ))}
           </StyledSelect>
 
-          <StyledBtn type="submit" disabled={disabledInput}>
+          <StyledBtn
+            type="submit"
+            disabled={disabledInput}
+            style={{ fontSize: "1.5rem" }}
+          >
             Create New Task
           </StyledBtn>
           <Closebutton onClick={() => setShowForm(false)}>X</Closebutton>
         </StyledForm>
-        <div>
-          {showNotification && (
-            <Notification
-              setShowNotification={setShowNotification}
-              setDisabledInput={setDisabledInput}
-              message={message}
-            />
-          )}
-        </div>
       </SignInContainer>
+      <div>
+        {showNotification && (
+          <Notification
+            setShowNotification={setShowNotification}
+            setDisabledInput={setDisabledInput}
+            message={message}
+          />
+        )}
+      </div>
     </>
   );
 };
-
-const SignInContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 2px solid darkgreen;
-
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: relative;
-`;
-
-const StyledForm = styled.form`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50vw;
-  min-width: 400px;
-  height: fit-content;
-  background: var(--c-grey-blue);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10.2px);
-  -webkit-backdrop-filter: blur(10.2px);
-  border: 1px solid var(--c-superlight);
-`;
-
-const StyledInput = styled.input`
-  font-size: 2rem;
-  width: 40vw;
-  max-width: 400px;
-  margin: 1vw auto 20px;
-  border-radius: 2px;
-  padding: 1rem 1rem;
-  background: rgba(var(--c-black), 0.5);
-  outline: none;
-  border: 3px solid var(--c-white);
-  border-radius: 10px;
-  color: var(--c-superlight);
-  &::-webkit-input-placeholder {
-    color: var(--c-superlight);
-  }
-  &:focus {
-    background: rgba(var(--c-tint-blue-rgb), 0.9);
-    color: var(--c-black);
-    &::-webkit-input-placeholder {
-      opacity: 0.2;
-    }
-  }
-`;
-
-const StyledSelect = styled.select`
-  font-size: 1.2rem;
-  width: 40vw;
-  max-width: 400px;
-  margin: 1vw auto 20px;
-  border-radius: 2px;
-  padding: 1rem 1rem;
-  background: rgba(var(--c-black), 0.5);
-  outline: none;
-  border: 3px solid var(--c-white);
-  border-radius: 10px;
-  color: var(--c-superlight);
-  &::-webkit-input-placeholder {
-    color: var(--c-grey-text);
-  }
-  &:focus {
-    background: rgba(var(--c-tint-blue-rgb), 0.9);
-    color: var(--c-black);
-    &::-webkit-input-placeholder {
-      opacity: 0.2;
-    }
-  }
-`;
-
-const StyledBtn = styled.button`
-  width: 25vw;
-  max-width: 250px;
-  margin: 0 auto;
-  border-radius: 2px;
-  padding: 1rem 1rem;
-  background: var(--c-dark-gold);
-  outline: none;
-  border: none;
-  border-radius: 10px;
-  color: var(--c-white);
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  cursor: pointer;
-  &:hover {
-    background: var(--c-tint-blue);
-    color: var(--c-black);
-  }
-`;
 
 const Closebutton = styled.button`
   position: absolute;
@@ -212,7 +124,7 @@ const Closebutton = styled.button`
   display: block;
   border: none;
   background-color: transparent;
-  color: var(--c-dark-gold);
+  color: var(--c-secondary-grey);
   cursor: pointer;
 `;
 

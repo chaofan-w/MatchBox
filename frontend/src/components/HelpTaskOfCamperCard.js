@@ -8,7 +8,7 @@ const HelpTaskOfCamperCard = ({ task, setTasksOfCamper }) => {
   const history = useHistory();
   const [message, setMessage] = useState("");
   const [showNotification, setShowNotification] = useState(false);
-  const { loginState, setHelpTasks } = useContext(LoginContext);
+  const { loginState, setLoginState, setHelpTasks } = useContext(LoginContext);
   const camperId = loginState._id;
 
   const handleBecomeHelper = async (ev) => {
@@ -92,6 +92,11 @@ const HelpTaskOfCamperCard = ({ task, setTasksOfCamper }) => {
               .then((res) => res.json())
               .then((json) => {
                 setTasksOfCamper(json.data);
+                fetch(`/api/camper/${camperId}`)
+                  .then((res) => res.json())
+                  .then((json) => {
+                    setLoginState(json.data[0]);
+                  });
               });
           } else {
             setMessage(json.message);
@@ -143,13 +148,18 @@ const HelpTaskOfCamperCard = ({ task, setTasksOfCamper }) => {
         task.status === "recruit" &&
         task.taskHelpers.indexOf(loginState._id) < 0 &&
         task.taskOwner !== loginState._id && (
-          <StyledButton id={task._id} onClick={handleBecomeHelper}>
+          <StyledButton
+            id={task._id}
+            className={task.status}
+            onClick={handleBecomeHelper}
+          >
             Join Helper Team
           </StyledButton>
         )}
       {loginState === null && task.status === "recruit" && (
         <StyledButton
           id={task._id}
+          className={task.status}
           onClick={() => {
             history.push("/signin");
           }}
@@ -160,7 +170,11 @@ const HelpTaskOfCamperCard = ({ task, setTasksOfCamper }) => {
       {loginState !== null &&
         task.taskHelpers.indexOf(loginState._id) >= 0 &&
         task.status !== "Completed" && (
-          <StyledButton id={task._id} onClick={handleSignOffTask}>
+          <StyledButton
+            id={task._id}
+            className={task.status}
+            onClick={handleSignOffTask}
+          >
             sign off task
           </StyledButton>
         )}
@@ -168,10 +182,18 @@ const HelpTaskOfCamperCard = ({ task, setTasksOfCamper }) => {
         task.taskOwner === loginState._id &&
         task.status === "in-progress" && (
           <>
-            <StyledButton id={task._id} onClick={handleTaskCompleted}>
+            <StyledButton
+              id={task._id}
+              className={task.status}
+              onClick={handleTaskCompleted}
+            >
               Mark Task Completed
             </StyledButton>
-            <StyledButton id={task._id} onClick={handleCancelTask}>
+            <StyledButton
+              id={task._id}
+              className={task.status}
+              onClick={handleCancelTask}
+            >
               Cancel Task
             </StyledButton>
           </>
@@ -180,7 +202,11 @@ const HelpTaskOfCamperCard = ({ task, setTasksOfCamper }) => {
         task.taskOwner === loginState._id &&
         task.status === "recruit" && (
           <>
-            <StyledButton id={task._id} onClick={handleCancelTask}>
+            <StyledButton
+              id={task._id}
+              className={task.status}
+              onClick={handleCancelTask}
+            >
               Cancel Task
             </StyledButton>
           </>
@@ -200,29 +226,55 @@ const Wrapper = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   padding: 5px;
   border: 2px solid var(--c-superlight);
-  background: rgba(205, 217, 255, 0.74);
   border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(205, 217, 255, 0.3);
   justify-content: space-between;
+  /* .recruit {
+    background: var(--c-secondary-purple);
+    color: var(--fontcolor-white);
+  }
+  .in-progress {
+    background: var(--c-primary-blue);
+    color: var(--fontcolor-white);
+  }
+  .Completed {
+    color: var(--c-black);
+  } */
 `;
 const StyledButton = styled.button`
   display: block;
-  width: 180px;
+  width: 50%;
   height: 30px;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 20px;
-  background: var(--c-dark-gold);
+  background: var(--c-secondary-orange);
   outline: none;
-  border: none;
-  color: var(--c-white);
+  border: 2px var(--fontcolor-white) solid;
+  color: var(--fontcolor-white);
   border-radius: 5px;
   cursor: pointer;
+  &:hover {
+    background: var(--fontcolor-white);
+    color: var(--fontcolor-primary);
+  }
+  /* &.recruit {
+    background: var(--c-secondary-purple);
+    color: var(--fontcolor-white);
+  }
+  &.in-progress {
+    background: var(--c-primary-blue);
+    color: var(--fontcolor-white);
+  }
+  &.Completed {
+    color: var(--c-black);
+  } */
 `;
 
 export default HelpTaskOfCamperCard;

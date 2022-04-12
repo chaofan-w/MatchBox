@@ -69,7 +69,7 @@ const Header = () => {
 const HeaderContainer = styled.div`
   width: 100%;
   height: var(--header-height);
-  background-color: var(--c-dark-gold);
+  background-color: var(--c-primary-blue);
   /* background-color: var(--c-dark-gold); */
   color: white;
   font-family: var(--heading-font-family);

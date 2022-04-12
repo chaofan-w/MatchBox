@@ -9,7 +9,7 @@ const CreateNewTask = ({ setTasksOfCamper }) => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper className="createTask">
         <h1
           style={{
             fontSize: "90px",
@@ -40,16 +40,14 @@ const Wrapper = styled.div`
   display: flex;
   position: relative;
   flex-direction: row;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   padding: 5px;
   border: 2px solid var(--c-superlight);
-  background: rgba(205, 217, 255, 0.74);
   border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(205, 217, 255, 0.3);
   justify-content: space-between;
   text-align: center;
   align-items: center;
