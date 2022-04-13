@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import LoginContext from "../LoginContext";
 import DemoTaskCard from "./DemoTaskCard";
+import Slider from "./Slider";
 
 const Home = () => {
   const { loginState, helpTasks } = useContext(LoginContext);
@@ -21,9 +22,7 @@ const Home = () => {
         <TaskListingWrapper>
           {demoTask && <DemoTaskCard key={demoTask._id} task={demoTask} />}
         </TaskListingWrapper>
-        {/* <TaskListingWrapper2>
-        {demoTask && <DemoTaskCard key={demoTask._id} task={demoTask} />}
-      </TaskListingWrapper2> */}
+
         <BeliefContainer>
           <Styledh1>Our Goal</Styledh1>
           <div
@@ -39,6 +38,12 @@ const Home = () => {
           </Styledh3>
         </BeliefContainer>
       </HomeWrapper>
+      <SlideSection>
+        <TaskListingWrapper>
+          {demoTask && <DemoTaskCard key={demoTask._id} task={demoTask} />}
+        </TaskListingWrapper>
+        <Slider />
+      </SlideSection>
     </HomeContainer>
   );
 };
@@ -147,6 +152,22 @@ const Styledh3 = styled.div`
   text-align: center;
   padding: 0px 35px;
   line-height: 1.2;
+`;
+
+const SlideSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 90vh;
+  background: url("/images/MTL-BKG.jpg");
+  background-size: cover;
+  background-position: center;
+  padding-left: 15%;
+  padding-right: 15%;
 `;
 
 export default Home;
