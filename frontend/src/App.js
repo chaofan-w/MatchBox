@@ -7,6 +7,7 @@ import SignUp from "./components/SignUpPage";
 import HelpTaskListing from "./components/HelpTaskListing";
 import Header from "./components/Header";
 import CamperPrivatePage from "./components/CamperPrivatePage";
+import Home from "./components/Home";
 
 const App = () => {
   return (
@@ -34,7 +35,7 @@ const App = () => {
             <CamperPrivatePage />
           </Route>
           <Route exact path="/">
-            This is the home page
+            <Home />
           </Route>
           <Route path="">404: Oops!</Route>
         </Switch>
