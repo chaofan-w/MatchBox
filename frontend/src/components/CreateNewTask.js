@@ -40,8 +40,8 @@ const Wrapper = styled.div`
   display: flex;
   position: relative;
   flex-direction: row;
-  width: 300px;
-  height: 300px;
+  width: 340px;
+  height: 420px;
   padding: 5px;
   border: 2px solid var(--c-superlight);
   border-radius: 10px;
