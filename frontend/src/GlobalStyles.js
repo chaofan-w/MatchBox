@@ -49,6 +49,8 @@ export default createGlobalStyle`
     --c-primary-grey-rgb:169,169,169;
     --c-primary-blue:#2779a7;
     --c-primary-blue-rgb:39,120,167;
+    --c-primary-darkblue:#191970;
+    --c-primary-darkblue-rgb:25,25,112;
     --c-primary-yellow:#ecd06f;
     --c-primary-yellow-rbg:236,209,111;
     --c-primary-green:#30B9C1;
