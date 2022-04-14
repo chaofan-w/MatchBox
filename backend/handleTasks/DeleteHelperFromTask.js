@@ -55,7 +55,7 @@ const deleteHelperFromTask = async (req, res) => {
         res,
         200,
         null,
-        `camper ${helperId} is successfully removed from task Id ${taskId}, now ${
+        `camper Id: ${helperId} is successfully removed from task Id: ${taskId}, now ${
           taskHelperCheck[0].taskHelpers.length - 1
         } of ${taskHelperCheck[0].helperNum} helpers are recruited.`
       );

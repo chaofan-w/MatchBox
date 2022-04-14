@@ -27,6 +27,8 @@ const HelpTaskCard = ({ task }) => {
         .then((res) => res.json())
         .then((json) => {
           if (json.status === 200) {
+            setMessage(json.message);
+            setShowNotification(true);
             fetch("/api/helptasks")
               .then((res) => res.json())
               .then((json) => {
@@ -65,6 +67,8 @@ const HelpTaskCard = ({ task }) => {
         .then((res) => res.json())
         .then((json) => {
           if (json.status === 200) {
+            setMessage(json.message);
+            setShowNotification(true);
             fetch("/api/helptasks")
               .then((res) => res.json())
               .then((json) => {
@@ -93,6 +97,8 @@ const HelpTaskCard = ({ task }) => {
         .then((res) => res.json())
         .then((json) => {
           if (json.status === 200) {
+            setMessage(json.message);
+            setShowNotification(true);
             fetch("/api/helptasks")
               .then((res) => res.json())
               .then((json) => {
@@ -125,6 +131,8 @@ const HelpTaskCard = ({ task }) => {
         .then((res) => res.json())
         .then((json) => {
           if (json.status === 200) {
+            setMessage(json.message);
+            setShowNotification(true);
             fetch("/api/helptasks")
               .then((res) => res.json())
               .then((json) => {
@@ -141,118 +149,119 @@ const HelpTaskCard = ({ task }) => {
   };
 
   return (
-    <Wrapper className={task.status}>
-      <Row1>
-        <TitleBlock>
-          <Titlespan>Task Id:</Titlespan>
-          <IdSpan>{task._id}</IdSpan>
-        </TitleBlock>
-      </Row1>
-      <Row2>
-        <Col1>
-          <SkillImg
-            src={`/images/${task.taskSkill.split(" ").join("-")}.png`}
-            alt={task.taskSkill}
-          />
-        </Col1>
-        <Col2>
-          <StatusBlock>
-            <Titlespan>Status:</Titlespan>
-            <StatusSpan>{task.status}</StatusSpan>
-          </StatusBlock>
-          <NumBlock>
-            <Titlespan>Helpers needed:</Titlespan>
-            <NumSpan>{task.helperNum - task.taskHelpers.length}</NumSpan>
-          </NumBlock>
-          <LocationBlock>
-            <Titlespan>Location:</Titlespan>
-            <LocationSpan>{task.location}</LocationSpan>
-          </LocationBlock>
-        </Col2>
-      </Row2>
-      <Row3>
-        <SkillBlock>
-          <Titlespan>Task:</Titlespan>
-          <SkillSpan>{task.taskSkill}</SkillSpan>
-        </SkillBlock>
-      </Row3>
-      <Row4>
-        {loginState !== null &&
-          task.status === "recruit" &&
-          task.taskHelpers.indexOf(loginState._id) < 0 &&
-          task.taskOwner !== loginState._id && (
+    <>
+      <Wrapper className={task.status}>
+        <Row1>
+          <TitleBlock>
+            <Titlespan>Task Id:</Titlespan>
+            <IdSpan>{task._id}</IdSpan>
+          </TitleBlock>
+        </Row1>
+        <Row2>
+          <Col1>
+            <SkillImg
+              src={`/images/${task.taskSkill.split(" ").join("-")}.png`}
+              alt={task.taskSkill}
+            />
+          </Col1>
+          <Col2>
+            <StatusBlock>
+              <Titlespan>Status:</Titlespan>
+              <StatusSpan>{task.status}</StatusSpan>
+            </StatusBlock>
+            <NumBlock>
+              <Titlespan>Helpers needed:</Titlespan>
+              <NumSpan>{task.helperNum - task.taskHelpers.length}</NumSpan>
+            </NumBlock>
+            <LocationBlock>
+              <Titlespan>Location:</Titlespan>
+              <LocationSpan>{task.location}</LocationSpan>
+            </LocationBlock>
+          </Col2>
+        </Row2>
+        <Row3>
+          <SkillBlock>
+            <Titlespan>Task:</Titlespan>
+            <SkillSpan>{task.taskSkill}</SkillSpan>
+          </SkillBlock>
+        </Row3>
+        <Row4>
+          {loginState !== null &&
+            task.status === "recruit" &&
+            task.taskHelpers.indexOf(loginState._id) < 0 &&
+            task.taskOwner !== loginState._id && (
+              <StyledButton
+                id={task._id}
+                className={task.status}
+                onClick={handleBecomeHelper}
+              >
+                Offer Help
+              </StyledButton>
+            )}
+          {loginState === null && task.status === "recruit" && (
             <StyledButton
               id={task._id}
               className={task.status}
-              onClick={handleBecomeHelper}
+              onClick={() => {
+                history.push("/signin");
+              }}
             >
-              Offer Help
+              signin to help
             </StyledButton>
           )}
-        {loginState === null && task.status === "recruit" && (
-          <StyledButton
-            id={task._id}
-            className={task.status}
-            onClick={() => {
-              history.push("/signin");
-            }}
-          >
-            signin to help
-          </StyledButton>
-        )}
-        {loginState !== null &&
-          task.taskHelpers.indexOf(loginState._id) >= 0 &&
-          task.status !== "Completed" && (
-            <StyledButton
-              id={task._id}
-              className={task.status}
-              onClick={handleSignOffTask}
-            >
-              sign off task
-            </StyledButton>
-          )}
-        {loginState !== null &&
-          task.taskOwner === loginState._id &&
-          task.status === "in-progress" && (
-            <>
+          {loginState !== null &&
+            task.taskHelpers.indexOf(loginState._id) >= 0 &&
+            task.status !== "Completed" && (
               <StyledButton
                 id={task._id}
                 className={task.status}
-                onClick={handleTaskCompleted}
+                onClick={handleSignOffTask}
               >
-                Completed
+                sign off task
               </StyledButton>
-              <StyledButton
-                id={task._id}
-                className={task.status}
-                onClick={handleCancelTask}
-              >
-                Cancel Task
-              </StyledButton>
-            </>
-          )}
-        {loginState !== null &&
-          task.taskOwner === loginState._id &&
-          task.status === "recruit" && (
-            <>
-              <StyledButton
-                id={task._id}
-                className={task.status}
-                onClick={handleCancelTask}
-              >
-                Cancel Task
-              </StyledButton>
-            </>
-          )}
-      </Row4>
-
+            )}
+          {loginState !== null &&
+            task.taskOwner === loginState._id &&
+            task.status === "in-progress" && (
+              <>
+                <StyledButton
+                  id={task._id}
+                  className={task.status}
+                  onClick={handleTaskCompleted}
+                >
+                  Completed
+                </StyledButton>
+                <StyledButton
+                  id={task._id}
+                  className={task.status}
+                  onClick={handleCancelTask}
+                >
+                  Cancel Task
+                </StyledButton>
+              </>
+            )}
+          {loginState !== null &&
+            task.taskOwner === loginState._id &&
+            task.status === "recruit" && (
+              <>
+                <StyledButton
+                  id={task._id}
+                  className={task.status}
+                  onClick={handleCancelTask}
+                >
+                  Cancel Task
+                </StyledButton>
+              </>
+            )}
+        </Row4>
+      </Wrapper>
       {showNotification && (
         <Notification
           message={message}
           setShowNotification={setShowNotification}
         />
       )}
-    </Wrapper>
+    </>
   );
 };
 
@@ -269,6 +278,7 @@ const Wrapper = styled.div`
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   gap: 5px;
+
   /* .recruit {
     background: var(--c-secondary-purple);
     color: var(--fontcolor-white);

@@ -4,7 +4,7 @@ import rightArrow from "./right-arrow.svg";
 import styled from "styled-components";
 
 const SliderBtn = ({ direction, moveSlide }) => {
-  console.log(direction, moveSlide);
+  // console.log(direction, moveSlide);
   return (
     <Slidebutton
       onClick={moveSlide}

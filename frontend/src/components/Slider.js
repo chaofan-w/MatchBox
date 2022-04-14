@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SliderBtn from "./SliderBtn";
 import styled from "styled-components";
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(1);
+
+  const timeoutRef = useRef(null);
+  const resetTimeout = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
 
   const skills = [
     "IT support",
@@ -22,7 +29,22 @@ const Slider = () => {
   const imgPaths = skills.map(
     (skill) => `/images/${skill.split(" ").join("-")}.png`
   );
-  console.log(imgPaths);
+  // console.log(imgPaths);
+
+  //-----------------auto slider setting, delay 4000ms----------------
+  useEffect(() => {
+    resetTimeout();
+    timeoutRef.current = setTimeout(
+      () =>
+        setSlideIndex((prevIndex) =>
+          prevIndex === imgPaths.length ? 1 : prevIndex + 1
+        ),
+      4000
+    );
+    return () => {
+      resetTimeout();
+    };
+  }, [slideIndex]);
 
   const nextSlide = () => {
     if (slideIndex < imgPaths.length) {
@@ -47,7 +69,7 @@ const Slider = () => {
     <Slidecontainer className="slide-Container">
       {imgPaths.map((img, index) => (
         <Slide
-          key={img.split("/")[2].slice(0, -4)}
+          key={`${img.split("/")[2].slice(0, -4)}-${index}`}
           className={slideIndex === index + 1 ? "active-anim" : "slide"}
         >
           <Slideimg src={imgPaths[index]} alt={skills[index]} />
@@ -73,7 +95,7 @@ const Slidecontainer = styled.div`
   width: 650px;
   min-width: 320px;
   height: 440px;
-  min-height: 360px;
+  /* min-height: 360px; */
   margin: 10px auto 0;
   position: relative;
   overflow: hidden;
@@ -103,7 +125,8 @@ const Slideimg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(60%);
+  filter: sepia(50%);
+  /* filter: grayscale(60%); */
 `;
 const SlideTitle = styled.div`
   display: block;
@@ -111,7 +134,7 @@ const SlideTitle = styled.div`
   padding: 5px 20px;
   width: 100%;
   font-family: "Poppins", sans-serif;
-  color: var(--fontcolor-white);
+  color: var(--c-primary-blue);
   background: rgba(236, 208, 111, 0.55);
   border-radius: 5px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -132,14 +155,14 @@ const DotContainer = styled.div`
 `;
 
 const Dot = styled.div`
-  width: 20px;
-  height: 20px;
+  width: min(2vw, 15px);
+  height: min(2vw, 15px);
   border-radius: 50%;
   /* border: 3px solid #f1f1f1; */
   margin: 0 5px;
-  background: var(--c-primary-blue);
+  background: var(--c-primary-grey);
   &.active {
-    background: var(--c-primary-yellow);
+    background: var(--c-primary-blue);
   }
 `;
 

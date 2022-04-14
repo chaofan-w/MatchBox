@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   position: relative;
   flex-direction: column;
   margin: 20px auto;
-  width: 350px;
+  min-width: 360px;
   height: 440px;
   padding: 20px;
   border: 5px solid var(--c-primary-yellow);

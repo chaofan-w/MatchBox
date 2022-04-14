@@ -14,7 +14,7 @@ const HelpTaskListing = () => {
         setHelpTasks(json.data);
       });
   }, [setHelpTasks]);
-  console.log(helpTasks);
+  // console.log(helpTasks);
 
   return (
     <>
@@ -32,7 +32,7 @@ const TaskListingWrapper = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  margin: 30px;
+  padding: 150px 30px;
   gap: 30px;
   .recruit {
     background: var(--c-primary-purple);

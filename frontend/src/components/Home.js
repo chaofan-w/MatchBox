@@ -14,7 +14,7 @@ const Home = () => {
         setDemoTask(json.data[0]);
       });
   }, []);
-  console.log(demoTask);
+  // console.log(demoTask);
 
   return (
     <HomeContainer>
@@ -92,11 +92,12 @@ const HomeWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: max(10px, 5vw);
   position: relative;
   width: 100%;
-  height: auto;
-  min-height: 90vh;
+  height: 100vh;
+  /* min-height: 90vh; */
   background: url("/images/floodBkg.jpg");
   background-size: cover;
   background-position: center;
@@ -121,7 +122,7 @@ const TaskListingWrapper = styled.div`
 
 const BeliefContainer = styled.div`
   display: block;
-  width: 650px;
+  min-width: 360px;
   height: 440px;
   opacity: 0;
   animation-name: ${TextFocusIn};
@@ -134,7 +135,7 @@ const BeliefContainer = styled.div`
 
 const Styledh1 = styled.div`
   display: block;
-  font-size: 100px;
+  font-size: max(50px, 5vw);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 500;
   /* color: var(--c-primary-darkblue); */
@@ -144,7 +145,7 @@ const Styledh1 = styled.div`
 `;
 const Styledh3 = styled.div`
   display: block;
-  font-size: 35px;
+  font-size: max(30px, 2.5vw);
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   margin-top: 0px;
@@ -158,10 +159,11 @@ const SlideSection = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: max(10px, 5vw);
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100vh;
   min-height: 90vh;
   background: url("/images/MTL-BKG.jpg");
   background-size: cover;
