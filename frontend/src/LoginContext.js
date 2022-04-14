@@ -5,6 +5,7 @@ export const LoginContext = createContext();
 export const LoginProvider = ({ children }) => {
   const [loginState, setLoginState] = useState(null);
   const [helpTasks, setHelpTasks] = useState(null);
+  const [showInBox, setShowInBox] = useState(false);
   // const [showNotification, setShowNotification] = useState(false);
 
   return (
@@ -14,6 +15,8 @@ export const LoginProvider = ({ children }) => {
         setHelpTasks,
         loginState,
         setLoginState,
+        showInBox,
+        setShowInBox,
         // showNotification,
         // setShowNotification,
       }}

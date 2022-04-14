@@ -34,7 +34,6 @@ const SignIn = () => {
       .then((res) => res.json())
       .then((json) => {
         if (json.status === 200) {
-          console.log(json.message);
           setLoginState(json.data[0]);
           sessionStorage.setItem("camperId", json.data[0]._id);
           history.push(`/camper/${json.data[0]._id}`);
@@ -95,9 +94,9 @@ const SignIn = () => {
 
 export const SignInContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   /* border: 2px solid darkgreen; */
-
+  /* padding: 150px; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -106,13 +105,12 @@ export const SignInContainer = styled.div`
 `;
 
 export const StyledForm = styled.form`
-  position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 0px;
-  top: 20%;
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: 50vw;
   min-width: 400px;
   height: fit-content;

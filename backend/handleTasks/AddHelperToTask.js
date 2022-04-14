@@ -58,9 +58,11 @@ const addHelperToTask = async (req, res) => {
         res,
         200,
         null,
-        `camper ${helperId} is successfully added to task Id ${taskId}, now ${
-          taskHelperCheck[0].taskHelpers.length + 1
-        } of ${taskHelperCheck[0].helperNum} helpers are recruited.`
+        `camper Id: ${helperId} is successfully 
+        added to task Id: ${taskId}, 
+        now ${taskHelperCheck[0].taskHelpers.length + 1} of ${
+          taskHelperCheck[0].helperNum
+        } helpers are recruited.`
       );
     } else if (
       taskHelperCheck[0].taskHelpers.length + 1 ===

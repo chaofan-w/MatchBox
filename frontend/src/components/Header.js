@@ -1,11 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LoginContext from "../LoginContext";
+import { FiMail } from "react-icons/fi";
 
 const Header = () => {
-  const { loginState, setLoginState } = useContext(LoginContext);
-  console.log(loginState);
+  const { loginState, setLoginState, showInBox, setShowInBox } =
+    useContext(LoginContext);
+  const [unreadMsgCount, setUnreadMsgCount] = useState(0);
+  useEffect(() => {
+    if (loginState) {
+      const unreadmsgs = loginState.msg.filter((msg) => msg.msgRead === false);
+      setUnreadMsgCount(unreadmsgs.length);
+    } else {
+      return;
+    }
+  }, [loginState]);
+
   return (
     <HeaderContainer>
       <div>
@@ -18,18 +29,38 @@ const Header = () => {
       </div>
       {loginState !== null && (
         <HeaderFlex>
-          <StyledLink className="textlink" to={"/helpcenter"}>
+          <StyledLink
+            className="textlink"
+            to={"/helpcenter"}
+            onClick={() => {
+              setShowInBox(false);
+            }}
+          >
             Help Center
           </StyledLink>
           <StyledLink
             className="textlink"
             to={`/camper/${sessionStorage.getItem("camperId")}`}
+            onClick={() => {
+              setShowInBox(false);
+            }}
           >
             {`Howdy, ${loginState.firstName}`}
           </StyledLink>
+          <InBoxBtn
+            onClick={() => {
+              setShowInBox(!showInBox);
+            }}
+          >
+            <FiMail />
+            {unreadMsgCount > 0 && <MsgCount>{unreadMsgCount}</MsgCount>}
+          </InBoxBtn>
+
           <StyledLink
             to="/"
+            className="textlink"
             onClick={() => {
+              setShowInBox(false);
               sessionStorage.clear();
               window.location.href = "/";
             }}
@@ -54,78 +85,89 @@ const Header = () => {
     </HeaderContainer>
   );
 };
-// const Header = ({ users }) => {
-//   return (
-//     <HeaderContainer>
-//       <div style={{ fontSize: "2rem" }}>
-//         <StyledLink to="/">Facespace</StyledLink>
-//       </div>
-//       {sessionStorage.getItem("userid") ? (
-//         <HeaderFlex>
-//           <StyledLink to={`/users/${sessionStorage.getItem("userid")}`}>
-//             {`Howdy, ${sessionStorage.getItem("username")}`}
-//           </StyledLink>
-//           <StyledLink
-//             to="/"
-//             onClick={() => {
-//               sessionStorage.clear();
-//               window.location.href = "/";
-//             }}
-//           >
-//             Sign out
-//           </StyledLink>
-//         </HeaderFlex>
-//       ) : (
-//         <StyledLink to="/signin">Sign in</StyledLink>
-//       )}
-//     </HeaderContainer>
-//   );
-// };
 
 const HeaderContainer = styled.div`
+  position: fixed;
+  top: 0;
   width: 100%;
-  height: 70px;
+  height: max(70px, auto);
   background-color: var(--c-primary-blue);
-  /* background-color: var(--c-dark-gold); */
   color: white;
   font-family: var(--heading-font-family);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 20px;
+  padding: 0px 10px;
+  z-index: 5;
 `;
 
 const HeaderFlex = styled.div`
-  width: 40%;
+  width: max(350px, 40%);
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  gap: max(10px, 4vw);
   align-items: center;
   height: 100%;
 `;
 
 const SigninSignup = styled.div`
+  width: max(350px, 40%);
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  gap: max(10px, 4vw);
+  align-items: center;
+  height: 100%;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: white;
-  width: 120px;
+  width: max(100px, auto);
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: 18px;
+  font-size: max(15px, 1vw);
+  text-align: center;
   &.textlink {
     justify-content: center;
     &:hover {
       background-color: var(--c-primary-green);
     }
   }
+`;
+
+const InBoxBtn = styled.button`
+  position: relative;
+  width: max(20px, 1vw);
+  height: max(20px, 1vw);
+  font-size: max(20px, 1vw);
+  padding: 0;
+  cursor: pointer;
+  &.textlink {
+    justify-content: center;
+    &:hover {
+      background-color: var(--c-primary-green);
+    }
+  }
+  background: transparent;
+  border: none;
+`;
+
+const MsgCount = styled.div`
+  width: max(10px, 0.5vw);
+  height: max(10px, 0.5vw);
+  border-radius: 50%;
+  font-size: max(8px, 0.4vw);
+  line-height: max(10px, 0.5vw);
+  background: var(--c-error);
+  position: absolute;
+  top: -2px;
+  right: -3px;
 `;
 
 const Logo = styled.img`

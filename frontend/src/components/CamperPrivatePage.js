@@ -4,9 +4,12 @@ import HelpTaskCard from "./HelpTaskCard";
 import styled from "styled-components";
 import HelpTaskOfCamperCard from "./HelpTaskOfCamperCard";
 import CreateNewTask from "./CreateNewTask";
+import Inbox from "./Inbox";
+import { FiXCircle } from "react-icons/fi";
 
 const CamperPrivatePage = () => {
-  const { helpTasks, loginState } = useContext(LoginContext);
+  const { helpTasks, loginState, showInBox, setShowInBox } =
+    useContext(LoginContext);
   const [tasksOfCamper, setTasksOfCamper] = useState(null);
 
   useEffect(() => {
@@ -21,7 +24,7 @@ const CamperPrivatePage = () => {
   return (
     <>
       {loginState && (
-        <div>
+        <>
           <div>
             <h3>first name: {loginState.firstName}</h3>
             <h3>last name: {loginState.lastName}</h3>
@@ -29,28 +32,33 @@ const CamperPrivatePage = () => {
             <h3>shelter No.: {loginState.shelterNum}</h3>
             <h3>skills : {loginState.skills}</h3>
           </div>
-          <div>
-            {loginState.msg.map((msg) => (
-              <>
-                <p>{Date(msg.msgTime)}:</p>
-                <p>{msg.msgContent}</p>
-                <p>{msg.msgRead}</p>
-              </>
-            ))}
-          </div>
-        </div>
+          {showInBox && (
+            <InBoxContainer>
+              <CloseBtn
+                onClick={() => {
+                  setShowInBox(false);
+                }}
+              >
+                <FiXCircle />
+              </CloseBtn>
+              <Inbox />
+            </InBoxContainer>
+          )}
+
+          <TaskListingWrapper>
+            {tasksOfCamper &&
+              tasksOfCamper.map((task) => (
+                <HelpTaskOfCamperCard
+                  key={task._id}
+                  task={task}
+                  setTasksOfCamper={setTasksOfCamper}
+                />
+              ))}
+            <CreateNewTask setTasksOfCamper={setTasksOfCamper} />
+          </TaskListingWrapper>
+        </>
       )}
-      <TaskListingWrapper>
-        {tasksOfCamper &&
-          tasksOfCamper.map((task) => (
-            <HelpTaskOfCamperCard
-              key={task._id}
-              task={task}
-              setTasksOfCamper={setTasksOfCamper}
-            />
-          ))}
-        <CreateNewTask setTasksOfCamper={setTasksOfCamper} />
-      </TaskListingWrapper>
+      ;
     </>
   );
 };
@@ -79,6 +87,41 @@ const TaskListingWrapper = styled.div`
     background: var(--c-primary-yellow);
     color: var(--c-primary-blue);
   }
+`;
+
+const InBoxContainer = styled.div`
+  display: block;
+  width: max(300px, 20vw);
+  height: min(70vh, 768px);
+  border: 2px solid black;
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  padding: 30px 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.44);
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.9px);
+  -webkit-backdrop-filter: blur(7.9px);
+  border: 1px solid rgba(255, 255, 255, 1);
+`;
+
+const CloseBtn = styled.button`
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 30px;
+  border: none;
+  background: transparent;
+  color: var(--fontcolor-white);
+  cursor: pointer;
 `;
 
 export default CamperPrivatePage;

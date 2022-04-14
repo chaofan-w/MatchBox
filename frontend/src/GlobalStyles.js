@@ -2,41 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    /* 
-    --font-heading: "Segoe UI", sans-serif;
-    --font-body: 'Poppins', Arial, Helvetica, sans-serif;
-    --padding-page: 24px; */
-    /* --firsth-font-family: 'Poppins', sans-serif;
-    --heading-font-family: 'Roboto', sans-serif;
-    --heading-font-family: Helvetica, sans-serif;
-    --heading-font-family: "Segoe UI", sans-serif; */
-    /* --c-navy: #0426a0; */
-    /* --c-navy: #E5E4E2;
-    --c-navy-rgb: 4,38,160;
-    --c-light-blue: #4169E1;
-    --c-light-blue-rgb: 4,46,230;
-    --c-grey-blue:#50609a;
-    --c-pastel-blue:#89CFF0;
-    --c-pastel-blue-rgb:137, 207, 240;
-    --c-purple-blue:#CCCCFF;
-    --c-purple-blue-rgb:204, 204, 255;
-    --c-grey-blue-rgb:80,96,154;
-    --c-white: #fff;
-    --c-white-rgb: 255,255,255;
-    --c-dark-gold:#A07E04;
-    --c-dark-gold-rgb:160,126,4;
-    --c-black: #171618;
-    --c-black-rgb: 23,22,24;
-    --c-greytext: #707070;
-    --c-greytext-rgb: 112,112,112;
-    --c-tint-blue: #c0c9e7;
-    --c-tint-blue-rgb: 192,201,231;
-    --c-superlight: #e8e8e8;
-    --c-superlight-rgb: 232,232,232;
-    --c-light-grey:#D3D3D3;
-    --c-light-grey-rgb:211,211,211;
-    --c-background-platinum:#E5E4E2;
-    --c-background-platinum-rgb:229, 228, 226; */
+
     
     --c-print: #000;
     --c-print-rgb: 0,0,0;
@@ -76,15 +42,6 @@ export default createGlobalStyle`
     --fontcolor-white-rgb:255,255,255;
 
 
-
-    
-
-
-    
-    
-    
-
-
   }
 
   /* http://meyerweb.com/eric/tools/css/reset/
@@ -103,7 +60,7 @@ export default createGlobalStyle`
   input, button, select, option,
   h1, h2, h3, h4, h5, h6, p, span,
   text { transition: all 0.25s ease-out;
-    font-family: 'Poppins', sans-serif, 'Roboto', sans-serif, Roboto,  -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'Poppins', sans-serif, 'Roboto', sans-serif, Roboto;
     overflow-wrap:break-word;
   }
 
