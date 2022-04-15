@@ -1,6 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
-import TestPage from "./components/TestPage";
 import GlobalStyles from "./GlobalStyles";
 import SignIn from "./components/SigninPage";
 import SignUp from "./components/SignUpPage";
@@ -16,9 +15,6 @@ const App = () => {
       <Header />
       <Main>
         <Switch>
-          <Route exact path="/msg">
-            <TestPage />
-          </Route>
           <Route exact path="/signin">
             <h1>Sign In</h1>
             <SignIn />

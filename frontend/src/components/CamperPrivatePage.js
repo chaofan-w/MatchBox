@@ -91,13 +91,13 @@ const TaskListingWrapper = styled.div`
 
 const InBoxContainer = styled.div`
   display: block;
-  width: max(300px, 20vw);
-  height: min(70vh, 768px);
+  width: max(300px, 25vw);
+  height: min(80vh, 768px);
   border: 2px solid black;
   position: fixed;
   top: 70px;
   right: 20px;
-  padding: 30px 5px;
+  padding: 30px 10px;
   overflow-y: scroll;
   overflow-x: hidden;
   z-index: 5;
@@ -120,7 +120,7 @@ const CloseBtn = styled.button`
   font-size: 30px;
   border: none;
   background: transparent;
-  color: var(--fontcolor-white);
+  color: var(--c-secondary-grey);
   cursor: pointer;
 `;
 
