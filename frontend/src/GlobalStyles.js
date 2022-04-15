@@ -59,8 +59,8 @@ export default createGlobalStyle`
   html, body, div,
   input, button, select, option,
   h1, h2, h3, h4, h5, h6, p, span,
-  text { transition: all 0.25s ease-out;
-    font-family: 'Poppins', sans-serif, 'Roboto', sans-serif, Roboto;
+  text { transition: all 0.2s ease-out;
+    font-family: 'Poppins', sans-serif, 'Roboto';
     overflow-wrap:break-word;
   }
 

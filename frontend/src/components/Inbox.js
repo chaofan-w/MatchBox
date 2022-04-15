@@ -48,10 +48,26 @@ const Inbox = () => {
             id={msg.msgTime}
           >
             <Msgflex>
-              <p>{msg.msgTime.slice(0, 10)}</p>
-              <p>{msg.msgContent}</p>
+              <p
+                style={{ fontFamily: "'Roboto Condensed'", fontWeight: "500" }}
+              >
+                {msg.msgTime.slice(0, 10)}
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Roboto'",
+                  fontSize: "13px",
+                  lineHeight: "1.2",
+                }}
+              >
+                {msg.msgContent}
+              </p>
             </Msgflex>
-            <ChangeReadBtn onClick={handleChangeRead} disabled={msg.msgRead}>
+            <ChangeReadBtn
+              className="readingBtn"
+              onClick={handleChangeRead}
+              disabled={msg.msgRead}
+            >
               {msg.msgRead ? <VscMailRead /> : <VscMail />}
             </ChangeReadBtn>
           </MsgWrapper>
@@ -63,18 +79,36 @@ const Inbox = () => {
 const MsgWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  background: rgba(var(--c-secondary-green-rgb), 0.2);
   &.isRead {
-    color: red;
+    color: var(--fontcolor-primary);
+    background: rgba(var(--fontcolor-white-rgb), 0.2);
+    .readingBtn {
+      cursor: none;
+    }
   }
+  height: 80px;
   gap: 5px;
   align-items: center;
   justify-content: flex-start;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  &:hover {
+    transform: scale(1.05);
+    background: rgba(var(--c-primary-green-rgb), 0.9);
+    color: var(--fontcolor-white);
+    .readingBtn {
+      color: var(--c-primary-yellow);
+    }
+  }
 `;
 
 const Msgflex = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 85%;
+  font-size: 15px;
+  gap: 8px;
 `;
 
 const ChangeReadBtn = styled.button`
@@ -84,7 +118,7 @@ const ChangeReadBtn = styled.button`
   font-size: 20px;
   border: none;
   background: transparent;
-  color: var(--c-primary-grey);
+  color: var(--c-primary-blue);
   cursor: pointer;
 `;
 
