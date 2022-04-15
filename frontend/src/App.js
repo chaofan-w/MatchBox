@@ -7,6 +7,7 @@ import HelpTaskListing from "./components/HelpTaskListing";
 import Header from "./components/Header";
 import CamperPrivatePage from "./components/CamperPrivatePage";
 import Home from "./components/Home";
+import VoiceMsgsListing from "./components/VoiceMsgsListing";
 
 const App = () => {
   return (
@@ -24,8 +25,10 @@ const App = () => {
             <SignUp />
           </Route>
           <Route exact path="/helpcenter">
-            This is the helpcenter page
             <HelpTaskListing />
+          </Route>
+          <Route exact path="/msgcenter">
+            <VoiceMsgsListing />
           </Route>
           <Route exact path="/camper/:camperId">
             <CamperPrivatePage />
