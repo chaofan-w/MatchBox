@@ -28,6 +28,11 @@ const { getHelpTasks } = require("./handleTasks/GetHelpTasks");
 const {
   getHelpTasksByCamperId,
 } = require("./handleTasks/GetHelpTasksByCamperId");
+const { uploadAudio } = require("./handleVOMsgs/uploadAudio");
+const {
+  transcribeAndUpdateMsgs,
+} = require("./handleVOMsgs/transcribeAndUpdateMsgs");
+const { getVOMsgs } = require("./handleVOMsgs/getVOMsgs");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -59,6 +64,10 @@ express()
   .post("/api/camper/msg/:camperId/:msgTime", changeMsgRead)
   .post("/api/camper/groupmsgs/:skills", msgToSkillGroup)
   .post("/api/camper/helpermsgs", pushMsgToHelpers)
+
+  .post("/api/vomsgs/upload", uploadAudio)
+  .get("/api/vomsgs/transcribe", transcribeAndUpdateMsgs)
+  .get("/api/vomsgs/get-all", getVOMsgs)
 
   // ---------------------------------
   // Nothing to modify below this line

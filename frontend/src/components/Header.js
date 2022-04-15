@@ -38,6 +38,9 @@ const Header = () => {
           >
             Help Center
           </StyledLink>
+          <StyledLink className="textlink" to={"/msgcenter"}>
+            VO Messages
+          </StyledLink>
           <StyledLink
             className="textlink"
             to={`/camper/${sessionStorage.getItem("camperId")}`}
@@ -74,6 +77,9 @@ const Header = () => {
           <StyledLink className="textlink" to={"/helpcenter"}>
             Help Center
           </StyledLink>
+          <StyledLink className="textlink" to={"/msgcenter"}>
+            VO Messages
+          </StyledLink>
           <StyledLink className="textlink" to="/signin">
             Sign in
           </StyledLink>
@@ -104,17 +110,18 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderFlex = styled.div`
-  width: max(350px, 40%);
+  width: max(400px, 60%);
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   gap: max(10px, 4vw);
   align-items: center;
   height: 100%;
+  border: 1px solid black;
 `;
 
 const SigninSignup = styled.div`
-  width: max(350px, 40%);
+  width: max(360px, 60%);
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
