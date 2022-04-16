@@ -4,7 +4,7 @@ import LoginContext from "../LoginContext";
 import { useHistory } from "react-router-dom";
 import Notification from "./Notification";
 
-const VoMsgCard = ({ msg }) => {
+const VoMsgCard = ({ msg, index }) => {
   const history = useHistory();
   const [message, setMessage] = useState("");
   const [showNotification, setShowNotification] = useState(false);
@@ -13,7 +13,7 @@ const VoMsgCard = ({ msg }) => {
   return (
     <>
       <Wrapper>
-        <Row1>
+        <Row1 index={index}>
           <TitleBlock>
             <Titlespan>Msg Id:</Titlespan>
             <IdSpan>{msg._id}</IdSpan>
@@ -75,6 +75,12 @@ const Row1 = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   border-bottom: 2px solid rgba(var(--c-secondary-grey-rgb), 0.5);
+  background: ${(props) => props.index % 4 === 0 && "var(--c-primary-green)"};
+  background: ${(props) => props.index % 4 === 1 && "var(--c-primary-purple)"};
+  background: ${(props) => props.index % 4 === 2 && "var(--c-primary-yellow)"};
+  background: ${(props) => props.index % 4 === 3 && "var(--c-primary-blue)"};
+  border-radius: 5px 5px 0px 0px;
+  color: var(--fontcolor-white);
 `;
 const Row2 = styled.div`
   display: flex;

@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import CamperPrivatePage from "./components/CamperPrivatePage";
 import Home from "./components/Home";
 import VoiceMsgsListing from "./components/VoiceMsgsListing";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -39,7 +40,7 @@ const App = () => {
           <Route path="">404: Oops!</Route>
         </Switch>
       </Main>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 };
@@ -49,7 +50,9 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   height: auto;
-  min-height: 90vh;
+  min-height: calc(100vh-420px);
+  width: 100%;
+  overflow: hidden;
 `;
 
 export default App;

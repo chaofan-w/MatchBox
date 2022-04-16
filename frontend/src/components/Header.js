@@ -117,7 +117,6 @@ const HeaderFlex = styled.div`
   gap: max(10px, 4vw);
   align-items: center;
   height: 100%;
-  border: 1px solid black;
 `;
 
 const SigninSignup = styled.div`

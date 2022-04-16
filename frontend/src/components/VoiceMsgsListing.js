@@ -20,7 +20,9 @@ const VoiceMesgsListing = () => {
     <>
       <TaskListingWrapper>
         {voiceMsgs &&
-          voiceMsgs.map((msg) => <VoMsgCard key={msg._id} msg={msg} />)}
+          voiceMsgs.map((msg, index) => (
+            <VoMsgCard key={msg._id} msg={msg} index={index} />
+          ))}
       </TaskListingWrapper>
     </>
   );

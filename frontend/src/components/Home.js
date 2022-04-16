@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import LoginContext from "../LoginContext";
 import DemoTaskCard from "./DemoTaskCard";
+import DemoTaskCard2 from "./DemoTaskCard2";
+import DemoTaskCard3 from "./DemoTaskCard3";
 import Slider from "./Slider";
 
 const Home = () => {
@@ -18,13 +20,13 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      <HomeWrapper>
+      <HomeWrapper className="scroll-page">
         <TaskListingWrapper>
           {demoTask && <DemoTaskCard key={demoTask._id} task={demoTask} />}
         </TaskListingWrapper>
 
         <BeliefContainer>
-          <Styledh1>Our Goal</Styledh1>
+          <Styledh1>Mission</Styledh1>
           <div
             style={{
               borderBottom: "2px solid var(--c-primary-yellow)",
@@ -38,12 +40,20 @@ const Home = () => {
           </Styledh3>
         </BeliefContainer>
       </HomeWrapper>
-      <SlideSection>
+      <SlideSection className="scroll-page">
+        <Styledh2>Community</Styledh2>
         <TaskListingWrapper>
-          {demoTask && <DemoTaskCard key={demoTask._id} task={demoTask} />}
+          {demoTask && <DemoTaskCard2 key={demoTask._id} task={demoTask} />}
         </TaskListingWrapper>
         <Slider />
       </SlideSection>
+      <SlideSection2 className="scroll-page">
+        <Styledh2>Innovation</Styledh2>
+        <TaskListingWrapper>
+          {demoTask && <DemoTaskCard3 key={demoTask._id} task={demoTask} />}
+        </TaskListingWrapper>
+        <img src="./images/matchbox-device.png" />
+      </SlideSection2>
     </HomeContainer>
   );
 };
@@ -53,6 +63,9 @@ const HomeContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: auto;
+  .scroll-page {
+    scroll-behavior: auto;
+  }
 `;
 
 const Slideleft = keyframes`
@@ -143,6 +156,16 @@ const Styledh1 = styled.div`
   text-align: center;
   margin-top: 50px;
 `;
+const Styledh2 = styled.div`
+  display: block;
+  font-size: max(30px, 3vw);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  /* color: var(--c-primary-darkblue); */
+  color: var(--c-primary-yellow);
+  text-align: center;
+  margin-top: 50px;
+`;
 const Styledh3 = styled.div`
   display: block;
   font-size: max(30px, 2.5vw);
@@ -165,11 +188,20 @@ const SlideSection = styled.div`
   width: 100%;
   height: 100vh;
   min-height: 90vh;
-  background: url("/images/MTL-BKG.jpg");
+  background: url("/images/volunteers-purple.jpg");
   background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat;
+  background-position: bottom;
   padding-left: 15%;
   padding-right: 15%;
+`;
+
+const SlideSection2 = styled(SlideSection)`
+  background: url("/images/rescue-blue.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  gap: max(10px, 4vw);
 `;
 
 export default Home;
