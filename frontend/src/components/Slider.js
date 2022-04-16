@@ -73,7 +73,7 @@ const Slider = () => {
           className={slideIndex === index + 1 ? "active-anim" : "slide"}
         >
           <Slideimg src={imgPaths[index]} alt={skills[index]} />
-          <SlideTitle>Our People: {skills[index]}</SlideTitle>
+          <SlideTitle>{skills[index]}</SlideTitle>
         </Slide>
       ))}
       <SliderBtn moveSlide={nextSlide} direction={"next"} />
