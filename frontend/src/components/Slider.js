@@ -69,7 +69,7 @@ const Slider = () => {
     <Slidecontainer className="slide-Container">
       {imgPaths.map((img, index) => (
         <Slide
-          key={`${img.split("/")[2].slice(0, -4)}-${index}`}
+          key={`${skills[index]}`}
           className={slideIndex === index + 1 ? "active-anim" : "slide"}
         >
           <Slideimg src={imgPaths[index]} alt={skills[index]} />
@@ -98,7 +98,7 @@ const Slidecontainer = styled.div`
   /* min-height: 360px; */
   margin: 10px auto 0;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 
   @media screen and (max-width: 700px) {
@@ -132,7 +132,7 @@ const SlideTitle = styled.div`
   display: block;
   font-size: 30px;
   padding: 5px 20px;
-  width: 100%;
+  width: 70%;
   font-family: "Poppins", sans-serif;
   color: var(--c-primary-blue);
   background: rgba(236, 208, 111, 0.55);
@@ -143,7 +143,7 @@ const SlideTitle = styled.div`
   border: 1px solid rgba(236, 208, 111, 0.33);
   position: absolute;
   top: 10%;
-  left: 10%;
+  /* left: 10%; */
 `;
 
 const DotContainer = styled.div`

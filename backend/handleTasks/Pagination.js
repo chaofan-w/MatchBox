@@ -15,7 +15,12 @@ const sendResponse = (res, status, data, message = "no message included.") => {
   return res.status(status).json({ status, data, message });
 };
 
-const getHelpTasks = async (req, res) => {
+const pagination = async (req, res) => {
+  const page = parseInt(req.params["page"]);
+  const limit = parseInt(req.params["limit"]);
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
   await client.connect();
   console.log(`${dbName} connected!`);
   try {
@@ -23,14 +28,17 @@ const getHelpTasks = async (req, res) => {
       .collection("helpTasks")
       .find()
       .sort({ status: -1, _id: -1 })
+      // .sort({ status: -1 })
       .toArray();
+    // console.log(allHelpTasks);
 
     if (allHelpTasks.length > 0) {
+      const result = allHelpTasks.slice(startIndex, endIndex);
       sendResponse(
         res,
         200,
-        allHelpTasks,
-        `we found ${allHelpTasks.length} help tasks`
+        result,
+        `we found ${limit} tasks for page: ${page}, start from ${startIndex}, end at ${endIndex}.`
       );
     } else {
       sendResponse(res, 400, null, `no help tasks found`);
@@ -42,4 +50,4 @@ const getHelpTasks = async (req, res) => {
   console.log(`${dbName} disconnected!`);
 };
 
-module.exports = { getHelpTasks };
+module.exports = { pagination };
