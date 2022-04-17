@@ -82,7 +82,7 @@ const TaskListingWrapper = styled.div`
   }
 `;
 
-const InBoxContainer = styled.div`
+export const InBoxContainer = styled.div`
   display: block;
   width: max(300px, 25vw);
   height: min(80vh, 768px);
@@ -102,7 +102,7 @@ const InBoxContainer = styled.div`
   border: 1px solid rgba(255, 255, 255, 1);
 `;
 
-const CloseBtn = styled.button`
+export const CloseBtn = styled.button`
   display: block;
   position: absolute;
   top: 0px;

@@ -3,37 +3,57 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LoginContext from "../LoginContext";
 import HelpTaskCard from "./HelpTaskCard";
+import { FiXCircle } from "react-icons/fi";
 import { FcPrevious, FcNext } from "react-icons/fc";
+import { InBoxContainer, CloseBtn } from "./CamperPrivatePage";
+import Inbox from "./Inbox";
 
 const HelpTaskListing = () => {
-  const { helpTasks, setHelpTasks, loginState } = useContext(LoginContext);
+  const { helpTasks, setHelpTasks, loginState, showInBox, setShowInBox } =
+    useContext(LoginContext);
   const [totalPage, setTotalPage] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [showPage, setShowPage] = useState(null);
 
   const limit = 8;
   useEffect(() => {
-    fetch("/api/helptasks")
-      .then((res) => res.json())
-      .then((json) => {
-        setHelpTasks(json.data);
-        setTotalPage(helpTasks && Math.ceil(helpTasks.length / limit));
-        setCurrentPage(1);
-        fetch(`/api/helptasks/pagination/${currentPage}/${limit}`)
-          .then((res) => res.json())
-          .then((json) => {
-            if (json.status === 200 && helpTasks) {
-              console.log(json.data);
-              setShowPage(json.data);
-            } else {
-              console.log(json.message);
-            }
-          });
-      });
-    // setShowPage(helpTasks.slice(0, limit));
-  }, [setHelpTasks]);
-  console.log(showPage);
-  console.log(totalPage);
+    if (helpTasks.length > 0) {
+      setTotalPage(helpTasks && Math.ceil(helpTasks.length / limit));
+      setCurrentPage(1);
+      fetch(`/api/helptasks/pagination/${currentPage}/${limit}`)
+        .then((res) => res.json())
+        .then((json) => {
+          if (json.status === 200 && helpTasks.length > 0) {
+            // console.log(json.data);
+            setShowPage(json.data);
+          } else {
+            console.log(json.message);
+          }
+        });
+    }
+  }, [helpTasks]);
+  // useEffect(() => {
+  //   fetch("/api/helptasks")
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       setHelpTasks(json.data);
+  //       setTotalPage(helpTasks && Math.ceil(helpTasks.length / limit));
+  //       setCurrentPage(1);
+  //       fetch(`/api/helptasks/pagination/${currentPage}/${limit}`)
+  //         .then((res) => res.json())
+  //         .then((json) => {
+  //           if (json.status === 200 && helpTasks.length > 0) {
+  //             console.log(json.data);
+  //             setShowPage(json.data);
+  //           } else {
+  //             console.log(json.message);
+  //           }
+  //         });
+  //     });
+  //   // setShowPage(helpTasks.slice(0, limit));
+  // }, [setHelpTasks]);
+  // console.log(showPage);
+  // console.log(totalPage);
 
   const handleSwitchPage = async (ev) => {
     setCurrentPage(parseInt(ev.target.value));
@@ -41,7 +61,7 @@ const HelpTaskListing = () => {
       .then((res) => res.json())
       .then((json) => {
         if (json.status === 200 && helpTasks) {
-          console.log(json.data);
+          // console.log(json.data);
           setShowPage(json.data);
         } else {
           console.log(json.message);
@@ -74,10 +94,22 @@ const HelpTaskListing = () => {
       });
     setCurrentPage(currentPage === 1 ? 1 : currentPage - 1);
   };
-  console.log(currentPage);
+  // console.log(currentPage);
 
   return (
     <>
+      {showInBox && (
+        <InBoxContainer>
+          <CloseBtn
+            onClick={() => {
+              setShowInBox(false);
+            }}
+          >
+            <FiXCircle />
+          </CloseBtn>
+          <Inbox />
+        </InBoxContainer>
+      )}
       <TaskListingWrapper>
         {showPage &&
           showPage.map((task) => <HelpTaskCard key={task._id} task={task} />)}

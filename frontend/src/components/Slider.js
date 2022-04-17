@@ -69,7 +69,7 @@ const Slider = () => {
     <Slidecontainer className="slide-Container">
       {imgPaths.map((img, index) => (
         <Slide
-          key={`${skills[index]}`}
+          key={`slide-${index}`}
           className={slideIndex === index + 1 ? "active-anim" : "slide"}
         >
           <Slideimg src={imgPaths[index]} alt={skills[index]} />
