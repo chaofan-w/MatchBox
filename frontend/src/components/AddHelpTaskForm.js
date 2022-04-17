@@ -12,7 +12,8 @@ import {
 } from "./SigninPage";
 
 const AddHelpTaskForm = ({ setShowForm, setTasksOfCamper }) => {
-  const { loginState, setLoginState } = useContext(LoginContext);
+  const { loginState, setLoginState, setHelpTasks, helpTasks } =
+    useContext(LoginContext);
   const [showNotification, setShowNotification] = useState(false);
   const [disabledInput, setDisabledInput] = useState(false);
   const [skills, setSkills] = useState(false);
@@ -54,6 +55,11 @@ const AddHelpTaskForm = ({ setShowForm, setTasksOfCamper }) => {
             .then((res) => res.json())
             .then((json) => {
               setTasksOfCamper(json.data);
+            });
+          fetch("/api/helptasks")
+            .then((res) => res.json())
+            .then((json) => {
+              setHelpTasks(json.data);
             });
         } else {
           setShowNotification(true);

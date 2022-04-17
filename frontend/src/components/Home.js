@@ -7,16 +7,16 @@ import DemoTaskCard3 from "./DemoTaskCard3";
 import Slider from "./Slider";
 
 const Home = () => {
-  const { loginState, helpTasks } = useContext(LoginContext);
+  const { loginState, helpTasks, setHelpTasks } = useContext(LoginContext);
   const [demoTask, setDemoTask] = useState(null);
   useEffect(() => {
     fetch("/api/helptasks")
       .then((res) => res.json())
       .then((json) => {
+        setHelpTasks(json.data);
         setDemoTask(json.data[0]);
       });
-  }, []);
-  // console.log(demoTask);
+  }, [setHelpTasks]);
 
   return (
     <HomeContainer>

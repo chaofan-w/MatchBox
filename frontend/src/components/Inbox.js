@@ -35,13 +35,13 @@ const Inbox = () => {
   );
   // console.log(sortMsgs);
 
-  const sortReadMsgs = sortMsgs.sort((a, b) => a.msgRead - b.msgRead);
-  console.log(sortReadMsgs);
+  // const sortReadMsgs = sortMsgs.sort((a, b) => a.msgRead - b.msgRead);
+  // console.log(sortReadMsgs);
 
   return (
     <>
       {loginState &&
-        sortReadMsgs.map((msg) => (
+        sortMsgs.map((msg) => (
           <MsgWrapper
             key={msg.msgTime}
             className={msg.msgRead ? "isRead" : "unread"}

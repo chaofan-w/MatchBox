@@ -28,7 +28,6 @@ const getCamperMsgs = async (req, res) => {
       .collection("campers")
       .find({ _id: objectId })
       .project({ msg: 1 })
-      // .toArray();
       .toArray();
 
     console.log(camperData);

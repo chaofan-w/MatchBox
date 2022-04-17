@@ -69,6 +69,11 @@ const HelpTaskOfCamperCard = ({ task, setTasksOfCamper }) => {
               .then((json) => {
                 setTasksOfCamper(json.data);
               });
+            fetch("/api/helptasks")
+              .then((res) => res.json())
+              .then((json) => {
+                setHelpTasks(json.data);
+              });
           } else {
             setMessage(json.message);
             setShowNotification(true);
@@ -104,6 +109,11 @@ const HelpTaskOfCamperCard = ({ task, setTasksOfCamper }) => {
                     setLoginState(json.data[0]);
                   });
               });
+            fetch("/api/helptasks")
+              .then((res) => res.json())
+              .then((json) => {
+                setHelpTasks(json.data);
+              });
           } else {
             setMessage(json.message);
             setShowNotification(true);
@@ -132,6 +142,11 @@ const HelpTaskOfCamperCard = ({ task, setTasksOfCamper }) => {
               .then((res) => res.json())
               .then((json) => {
                 setTasksOfCamper(json.data);
+              });
+            fetch("/api/helptasks")
+              .then((res) => res.json())
+              .then((json) => {
+                setHelpTasks(json.data);
               });
           } else {
             setMessage(json.message);
@@ -368,17 +383,6 @@ const StyledButton = styled.button`
     background: var(--fontcolor-white);
     color: var(--fontcolor-primary);
   }
-  /* &.recruit {
-    background: var(--c-secondary-purple);
-    color: var(--fontcolor-white);
-  }
-  &.in-progress {
-    background: var(--c-primary-blue);
-    color: var(--fontcolor-white);
-  }
-  &.Completed {
-    color: var(--c-black);
-  } */
 `;
 
 const TitleBlock = styled.div`
