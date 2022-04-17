@@ -61,7 +61,7 @@ const Home = () => {
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
   height: auto;
   .scroll-page {
     scroll-behavior: auto;
@@ -105,10 +105,9 @@ const HomeWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: space-between; */
   gap: max(10px, 5vw);
   position: relative;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   /* min-height: 90vh; */
   background: url("/images/floodBkg.jpg");
@@ -116,14 +115,14 @@ const HomeWrapper = styled.div`
   background-position: center;
   padding-left: 15%;
   padding-right: 15%;
-
-  /* filter: grayscale(80%); */
+  @media (max-width: 600px) {
+    overflow-x: auto;
+  }
 `;
 
 const TaskListingWrapper = styled.div`
   display: block;
   opacity: 0;
-
   gap: 20px;
   animation-name: ${Slideleft};
   animation-duration: 2s;
@@ -131,6 +130,9 @@ const TaskListingWrapper = styled.div`
   animation-delay: 1s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const BeliefContainer = styled.div`
@@ -182,18 +184,21 @@ const SlideSection = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: space-between; */
-  gap: max(10px, 5vw);
+  /* justify-content: flex-start; */
+  gap: max(10px, 3vw);
   position: relative;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   min-height: 90vh;
   background: url("/images/volunteers-purple.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
-  padding-left: 15%;
-  padding-right: 15%;
+  padding-left: 5%;
+  padding-right: 5%;
+  @media (max-width: 600px) {
+    overflow-x: auto;
+  }
 `;
 
 const SlideSection2 = styled(SlideSection)`
@@ -201,7 +206,7 @@ const SlideSection2 = styled(SlideSection)`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  gap: max(10px, 4vw);
+  gap: max(10px, 3vw);
 `;
 
 export default Home;

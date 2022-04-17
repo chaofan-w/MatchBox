@@ -25,13 +25,6 @@ const CamperPrivatePage = () => {
     <>
       {loginState && (
         <>
-          <div>
-            <h3>first name: {loginState.firstName}</h3>
-            <h3>last name: {loginState.lastName}</h3>
-            <h3>camp No.: {loginState.campNum}</h3>
-            <h3>shelter No.: {loginState.shelterNum}</h3>
-            <h3>skills : {loginState.skills}</h3>
-          </div>
           {showInBox && (
             <InBoxContainer>
               <CloseBtn
@@ -69,7 +62,7 @@ const TaskListingWrapper = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  margin: 30px;
+  padding: 120px 30px 50px;
   gap: 30px;
   .recruit {
     background: var(--c-primary-purple);

@@ -33,6 +33,7 @@ const {
   transcribeAndUpdateMsgs,
 } = require("./handleVOMsgs/transcribeAndUpdateMsgs");
 const { getVOMsgs } = require("./handleVOMsgs/getVOMsgs");
+const { pagination } = require("./handleTasks/Pagination");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -54,6 +55,7 @@ express()
   .post("/api/helptasks/taskdone", changeTaskDone)
   .get("/api/helptasks", getHelpTasks)
   .get("/api/helptasks/:camperId", getHelpTasksByCamperId)
+  .get("/api/helptasks/pagination/:page/:limit", pagination)
 
   .post("/api/add-newcamper", addNewCamper) //sign up use
   .get("/api/camper", getCamper) // for login individual page
