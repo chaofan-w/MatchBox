@@ -35,6 +35,7 @@ const {
 const { getVOMsgs } = require("./handleVOMsgs/getVOMsgs");
 const { pagination } = require("./handleTasks/Pagination");
 
+const port = process.env.PORT || 4000;
 express()
   // Below are methods that are included in express(). We chain them for convenience.
   // --------------------------------------------------------------------------------
@@ -83,4 +84,4 @@ express()
   })
 
   // Node spins up our server and sets it to listen on port 8000.
-  .listen(4000, () => console.log(`Listening on port 4000`));
+  .listen(port, () => console.log(`Listening on port ${port}`));
