@@ -153,7 +153,9 @@ const TaskListingWrapper = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
+  min-height: calc(100%-420px);
   padding: 120px 30px 50px;
+
   gap: 30px;
   .recruit {
     background: var(--c-primary-purple);
@@ -177,8 +179,8 @@ const PaginationContainer = styled.div`
 `;
 
 const PageBtn = styled.button`
-  width: min(2vw, 20px);
-  height: min(2vw, 20px);
+  width: max(2vw, 20px);
+  height: max(2vw, 20px);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -189,6 +191,7 @@ const PageBtn = styled.button`
   margin: 0 5px;
   border: none;
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
+
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   &.active {

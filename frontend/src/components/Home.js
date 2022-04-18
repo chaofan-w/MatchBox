@@ -52,7 +52,7 @@ const Home = () => {
         <TaskListingWrapper>
           {demoTask && <DemoTaskCard3 key={demoTask._id} task={demoTask} />}
         </TaskListingWrapper>
-        <img src="./images/matchbox-device.png" />
+        <Styledimg src="./images/matchbox-device.png" />
       </SlideSection2>
     </HomeContainer>
   );
@@ -98,6 +98,20 @@ const TextFocusIn = keyframes`
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   /* border: 1px solid rgba(45, 45, 45, 0.33); */
+};
+`;
+const ImgFocusIn = keyframes`
+0% {
+  -webkit-filter: blur(12px);
+          filter: blur(12px);
+  opacity: 0;
+}
+100% {
+  -webkit-filter: blur(0px);
+          filter: blur(0px);
+  opacity: 1;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 };
 `;
 
@@ -207,6 +221,19 @@ const SlideSection2 = styled(SlideSection)`
   background-size: cover;
   background-position: center;
   gap: max(10px, 3vw);
+`;
+
+const Styledimg = styled.img`
+  display: block;
+  min-width: 440px;
+  height: 540px;
+  opacity: 0;
+  animation-name: ${ImgFocusIn};
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-delay: 2s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 `;
 
 export default Home;
