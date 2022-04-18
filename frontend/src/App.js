@@ -9,6 +9,7 @@ import CamperPrivatePage from "./components/CamperPrivatePage";
 import Home from "./components/Home";
 import VoiceMsgsListing from "./components/VoiceMsgsListing";
 import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
 
 const App = () => {
   return (
@@ -37,7 +38,9 @@ const App = () => {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="">404: Oops!</Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
         </Switch>
       </Main>
       <Footer />
