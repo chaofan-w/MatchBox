@@ -32,6 +32,7 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
+      <li><a href="#the-main-features">The Main Features</a></li>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -43,12 +44,11 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <!-- <li><a href="#roadmap">Roadmap</a></li> -->
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <!-- <li><a href="#acknowledgments">Acknowledgments</a></li> -->
   </ol>
 </details>
 
@@ -71,17 +71,18 @@ I believe that together, people shine brightest in the darkest moment.
 
 During the scenario of extreme conditions like: flood, wildfire, war and large-scale evacuations,
 this application can quickly deployed by the local emergency center or recovery entities. So people can fully connected and leverage on on-site resources to manage the rescue and rebuilding tasks.
+![deployement ecosystem][ecosystem-screenshot]
 
-#1: re-organize surviors into diffrent shelter camp and talent group
+#1: re-organize surviors into diffrent shelter camp and talent group, with unique camperId
 
 #2: the emergency center, through the application, collect and distribute needed tasks and recruit voluteers onsite
 
-#3: campers can visit help centers listings to choose asking for help or offering help
+#3: campers can visit help centers listings to ask for help or offer help to others
 
 ![Userpage screen shot][user-page-screenshot]
-#4: timely message system can push task assignment and status to individual camper
+#4: timely push message system can push task assignment and status to individual camper
 
-#5: in some extreme scenario e.g., now power or telecome connections, leverage voice message + satellite connection device to connect people in the wild to the helping center, so no one will be left alone.
+#5: in some extreme scenario e.g., now power or telecome connections, leverage voice message + satellite connection device to connect people in the wild to the helping center, for later rescue so no one will be left alone.
 
 ![Vociemessage page screen shot][voicemsg-screenshot]
 
@@ -112,8 +113,12 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   npm install npm@latest -g
   ```
+- yarn
+  ```sh
+  npm install --global yarn
+  ```
 
-### Installation & Setup
+### Installation
 
 1. Clone the repo
    ```sh
@@ -140,37 +145,24 @@ This is an example of how to list things you need to use the software and how to
 6. dual terminal dev environment
    ![dual terminal](./frontend/public/screenshots/dual-terminal.png)
 
-7. Enter your API in `config.js`
+7. AssemblyAI Authentication
    ```js
-   const API_KEY = "ENTER YOUR API";
+    const assembly = axios.create({
+    baseURL: "https://api.assemblyai.com/v2",
+    headers: {
+      authorization: <YOUR-API-TOKEN>,
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+    },
+   });
    ```
+8. MongoDB Connection URI in .env file
+   ```sh
+    MONGO_URI=mongodb+srv://user:pass@sample.host.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+   ```
+   ![MongoDB connection string][mongodb-screenshot]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- USAGE EXAMPLES -->
-
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- ROADMAP -->
-
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-  - [ ] Nested Feature
-
-See the [open issues](https://github.com/chaofan-w/MatchBox/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- CONTRIBUTING -->
 
 ## Contributing
 
@@ -207,13 +199,13 @@ Project Link: [https://github.com/chaofan-w/MatchBox](https://github.com/chaofan
 
 <!-- ACKNOWLEDGMENTS -->
 
-## Acknowledgments
+<!-- ## Acknowledgments
 
 - []()
 - []()
 - []()
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p> -->
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -233,3 +225,5 @@ Project Link: [https://github.com/chaofan-w/MatchBox](https://github.com/chaofan
 [hompepage-screenshot]: ./frontend/public/screenshots/home-page.png
 [user-page-screenshot]: ./frontend/public/screenshots/camper_page_inbox.png
 [voicemsg-screenshot]: ./frontend/public/screenshots/vo-message-listing.png
+[ecosystem-screenshot]: ./frontend/public/screenshots/deployment-ecosystem.png
+[mongodb-screenshot]: ./frontend/public/screenshots/connection-string-parts.png
