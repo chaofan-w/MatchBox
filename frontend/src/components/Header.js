@@ -5,7 +5,7 @@ import LoginContext from "../LoginContext";
 import { FiMail } from "react-icons/fi";
 
 const Header = () => {
-  const { loginState, setLoginState, showInBox, setShowInBox } =
+  const { loginState, setLoginState, showInBox, setShowInBox, helpTasks } =
     useContext(LoginContext);
   const [unreadMsgCount, setUnreadMsgCount] = useState(0);
   useEffect(() => {
@@ -72,7 +72,7 @@ const Header = () => {
           </StyledLink>
         </HeaderFlex>
       )}
-      {loginState === null && (
+      {loginState === null && helpTasks !== null && (
         <SigninSignup>
           <StyledLink className="textlink" to={"/helpcenter"}>
             Help Center

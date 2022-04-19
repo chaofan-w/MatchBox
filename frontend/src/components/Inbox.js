@@ -87,7 +87,8 @@ const MsgWrapper = styled.div`
       cursor: none;
     }
   }
-  height: 80px;
+  height: auto;
+  padding: 5px;
   gap: 5px;
   align-items: center;
   justify-content: flex-start;

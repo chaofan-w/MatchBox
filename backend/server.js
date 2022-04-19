@@ -34,6 +34,7 @@ const {
 } = require("./handleVOMsgs/transcribeAndUpdateMsgs");
 const { getVOMsgs } = require("./handleVOMsgs/getVOMsgs");
 const { pagination } = require("./handleTasks/Pagination");
+const { addInputMsg } = require("./handleVOMsgs/addInputMsg");
 
 const port = process.env.PORT || 4000;
 express()
@@ -71,6 +72,7 @@ express()
   .post("/api/vomsgs/upload", uploadAudio)
   .get("/api/vomsgs/transcribe", transcribeAndUpdateMsgs)
   .get("/api/vomsgs/get-all", getVOMsgs)
+  .post("/api/vomsgs/add-inputmsg", addInputMsg)
 
   // ---------------------------------
   // Nothing to modify below this line
