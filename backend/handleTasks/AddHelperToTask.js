@@ -94,7 +94,7 @@ const addHelperToTask = async (req, res) => {
       const helpIds = pushIds.map((id) => ObjectId(id));
       const updateMsg = {
         msgTime: new Date(),
-        msgContent: `All helpers of the task Id ${taskId} have been recruited, ready to go!`,
+        msgContent: `All helpers of the task Id ${taskId} have been recruited, the helpers ids are: ${taskDB[0].taskHelpers.toString()}, ready to go!`,
         msgRead: false,
       };
       const pushMsg = await db.collection("campers").updateMany(
@@ -103,7 +103,17 @@ const addHelperToTask = async (req, res) => {
           $push: { msg: updateMsg },
         }
       );
-      sendResponse(res, 200, updateMsg, "msg updated");
+      sendResponse(
+        res,
+        200,
+        updateMsg,
+        "you have sucessfully registered for the task"
+      );
+      // fetch("/api/helptasks")
+      //   .then((res) => res.json())
+      //   .then((json) => {
+      //     setHelpTasks(json.data);
+      //   });
     } else {
       sendResponse(res, 400, null, "helper recruit is closed");
     }
