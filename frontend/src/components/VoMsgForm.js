@@ -25,18 +25,20 @@ const VoMsgForm = ({ setVoiceMsgs, voiceMsgs }) => {
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     if (loginState) {
-      const campId = loginState["_id"];
+      const camperId = loginState["_id"];
       const campNum = loginState["campNum"];
       const shelterNum = loginState["shelterNum"];
+      // const msgId = campNum + "-" + shelterNum;
       await fetch("/api/vomsgs/add-inputmsg", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          campId: campId,
+          camperId: camperId,
           campNum: campNum,
           shelterNum: shelterNum,
+          // msgId: msgId,
           msg: post,
         }),
       })
