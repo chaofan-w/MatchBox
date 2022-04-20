@@ -39,7 +39,7 @@ const Header = () => {
             Help Center
           </StyledLink>
           <StyledLink className="textlink" to={"/msgcenter"}>
-            VO Messages
+            Message Wall
           </StyledLink>
           <StyledLink
             className="textlink"
@@ -78,7 +78,7 @@ const Header = () => {
             Help Center
           </StyledLink>
           <StyledLink className="textlink" to={"/msgcenter"}>
-            VO Messages
+            Message Wall
           </StyledLink>
           <StyledLink className="textlink" to="/signin">
             Sign in

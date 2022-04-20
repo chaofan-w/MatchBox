@@ -226,7 +226,7 @@ const SlideSection2 = styled(SlideSection)`
 const Styledimg = styled.img`
   display: block;
   min-width: 440px;
-  height: 540px;
+  height: max (540px, 14vh);
   opacity: 0;
   animation-name: ${ImgFocusIn};
   animation-duration: 1s;
