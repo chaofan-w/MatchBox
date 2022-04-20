@@ -33,9 +33,11 @@ const transcribeAndUpdateMsgs = async (req, res) => {
 
     msgIds = await db.collection("voiceMsgs").find().toArray();
     // console.log(msgIds);
-    msgIds.forEach(async (msgId) => {
+    assemblyIds = msgIds.filter((item) => item.msgId[0] === "o");
+    console.log(assemblyIds);
+    assemblyIds.forEach(async (msgId) => {
       await assembly.get(`/transcript/${msgId.msgId}`).then((res) => {
-        // console.log("text: ", res.data.text, "id:", res.data.id);
+        console.log("text: ", res.data.text, "id:", res.data.id);
         updateMsg(res.data.id, res.data.text);
       });
     });
