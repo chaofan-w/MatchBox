@@ -2,7 +2,6 @@
   "name": "match_box_fe",
   "version": "1.0.0",
   "description": "My bootcamp project - MatchBox - an emergency management application",
-  "proxy": "https://matchboxbeta.herokuapp.com/",
   "main": "index.js",
   "dependencies": {
     "react": "^17.0.2",

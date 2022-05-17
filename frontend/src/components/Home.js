@@ -10,7 +10,7 @@ const Home = () => {
   const { loginState, helpTasks, setHelpTasks } = useContext(LoginContext);
   const [demoTask, setDemoTask] = useState(null);
   useEffect(() => {
-    fetch("https://matchboxbeta.herokuapp.com/api/helptasks")
+    fetch("/api/helptasks")
       .then((res) => res.json())
       .then((json) => {
         setHelpTasks(json.data);
