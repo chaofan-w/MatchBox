@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "/api/*"
-  to = "https://matchboxbeta.herokuapp.com"
-  force = true
