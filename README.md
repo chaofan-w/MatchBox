@@ -18,11 +18,11 @@
     <a href="https://github.com/chaofan-w/MatchBox"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/chaofan-w/MatchBox">View Demo</a>
+    <a href="https://projectmatchbox.netlify.app/">View Demo</a>
+    ·
+    <a href="https://app.pitch.com/app/presentation/dcc39a12-e9a5-4371-ad66-c873c1f6d39f/e25c79fd-a885-44b7-80ba-dafe39342542">Idea Presentation</a>
     ·
     <a href="https://github.com/chaofan-w/MatchBox/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/chaofan-w/MatchBox/issues">Request Feature</a>
   </p>
 </div>
 
