@@ -15,7 +15,7 @@
   <p align="center">
     An emergency management application which can be quickly deployed during or after emergency incidents, to facilitate the community and individual stakeholders working together to prevent, protect against, mitigate, respond to, and recover from incidents.
     <br />
-    <a href="https://github.com/chaofan-w/MatchBox" targt="_blank"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/chaofan-w/MatchBox" target="_blank"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://projectmatchbox.netlify.app/" target="_blank">View Demo</a>
